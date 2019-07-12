@@ -261,8 +261,8 @@ struct ContentView_Previews : PreviewProvider {
     @State static var showRightMenu: Bool = false
     
     static var previews: some View {
-        let leftMenu = LeftMenu(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
-        let rightMenu = RightMenu(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
+        let leftMenu = LeftMenuPanel(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
+        let rightMenu = RightMenuPanel(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
         
         return Group {
             SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, centerView: $centerView).onAppear {

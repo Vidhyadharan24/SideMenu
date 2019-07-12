@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1811845822D87F640087C50A /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1811845722D87F640087C50A /* ShimmerView */; };
 		1811846222D87FCF0087C50A /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
 		1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */; };
 		1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */; };
 		1811846522D87FCF0087C50A /* SideMenuConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845F22D87FCF0087C50A /* SideMenuConfig.swift */; };
 		1811846622D87FCF0087C50A /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846022D87FCF0087C50A /* SideMenu.swift */; };
 		1811846722D87FCF0087C50A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846122D87FCF0087C50A /* MenuView.swift */; };
+		1811846D22D882010087C50A /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1811846C22D882010087C50A /* ShimmerView */; };
 		1830FC7D22BFA686005A52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7C22BFA686005A52D7 /* AppDelegate.swift */; };
 		1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */; };
 		1830FC8322BFA687005A52D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8222BFA687005A52D7 /* Assets.xcassets */; };
@@ -76,8 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1811845822D87F640087C50A /* ShimmerView in Frameworks */,
 				18A6D5BD22D82288006A3674 /* SocketIO in Frameworks */,
+				1811846D22D882010087C50A /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +224,7 @@
 			name = "SideMenu-Example";
 			packageProductDependencies = (
 				18A6D5BC22D82288006A3674 /* SocketIO */,
-				1811845722D87F640087C50A /* ShimmerView */,
+				1811846C22D882010087C50A /* ShimmerView */,
 			);
 			productName = "SideMenu-Example";
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
@@ -300,7 +300,7 @@
 			mainGroup = 1830FC7022BFA686005A52D7;
 			packageReferences = (
 				18A6D5BB22D82288006A3674 /* XCRemoteSwiftPackageReference "socket" */,
-				1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */,
+				1811846B22D882010087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
@@ -682,12 +682,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+		1811846B22D882010087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
 			requirement = {
-				kind = revision;
-				revision = 3cd7ee1eccd8f38d1546e2054747a5d173205090;
+				branch = master;
+				kind = branch;
 			};
 		};
 		18A6D5BB22D82288006A3674 /* XCRemoteSwiftPackageReference "socket" */ = {
@@ -701,9 +701,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1811845722D87F640087C50A /* ShimmerView */ = {
+		1811846C22D882010087C50A /* ShimmerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			package = 1811846B22D882010087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */;
 			productName = ShimmerView;
 		};
 		18A6D5BC22D82288006A3674 /* SocketIO */ = {
