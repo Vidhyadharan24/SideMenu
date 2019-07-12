@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SideMenu
 
 struct HomeView: View, CenterView {
     @Binding var leftMenuState: Bool

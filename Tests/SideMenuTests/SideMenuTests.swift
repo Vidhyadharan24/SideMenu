@@ -6,7 +6,7 @@ final class SideMenuTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(SideMenu().text, "Hello, World!")
+        // XCTAssertEqual(SideMenu().text, "Hello, World!")
     }
 
     static var allTests = [

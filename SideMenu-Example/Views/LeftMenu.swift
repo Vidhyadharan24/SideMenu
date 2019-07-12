@@ -1,5 +1,5 @@
 //
-//  RightMenu.swift
+//  LeftMenu.swift
 //  SideMenu-Example
 //
 //  Created by Vidhyadharan Mohanram on 23/06/19.
@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
-import SideMenu
 
-internal struct RightMenu: View, MenuView {
+internal struct LeftMenu: View, MenuView {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
     
     @Binding var centerView: AnyView?
+    
+//    @BindableObject private var leftMenuViewModel = LeftMenuViewModel()
     
     var body: some View {
         GeometryReader { geometry in
@@ -24,22 +25,22 @@ internal struct RightMenu: View, MenuView {
                     Text("Hello World!")
                     Button(action: {
                         self.centerView = AnyView(HomeView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
-                        self.showRightMenu.toggle()
+                        self.showLeftMenu.toggle()
                     }, label: { Text("Update center view").color(.black) })
                     Spacer()
                     }.layoutPriority(1)
                 Spacer()
                 }
-                .background(Color.red)
+                .background(Color.blue)
                 .background(Rectangle().shadow(radius: 4))
         }
     }
 }
 
 #if DEBUG
-struct RightMenu_Previews : PreviewProvider {
+struct LeftMenu_Previews : PreviewProvider {
     static var previews: some View {
-        RightMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+        LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
     }
 }
 #endif

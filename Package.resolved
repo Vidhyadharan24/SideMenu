@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ShimmerView",
+        "repositoryURL": "https://github.com/Vidhyadharan-Mohanram/ShimmerView",
+        "state": {
+          "branch": null,
+          "revision": "3cd7ee1eccd8f38d1546e2054747a5d173205090",
+          "version": null
+        }
+      },
+      {
+        "package": "SocketIO",
+        "repositoryURL": "https://github.com/socketio/socket.io-client-swift",
+        "state": {
+          "branch": null,
+          "revision": "5dcfe18748f55cc1a001e640fa96ec2a4b098a55",
+          "version": "15.1.0"
+        }
+      },
+      {
+        "package": "Starscream",
+        "repositoryURL": "https://github.com/daltoniam/Starscream",
+        "state": {
+          "branch": null,
+          "revision": "9c03ef715d1bc9334b446c90df53586dd38cf849",
+          "version": "3.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

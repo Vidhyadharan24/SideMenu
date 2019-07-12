@@ -14,7 +14,7 @@ public protocol MenuView: View {
     
 }
 
-internal struct LeftMenu: View, MenuView {
+internal struct LeftMenuPanel: View, MenuView {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
 
@@ -41,7 +41,7 @@ internal struct LeftMenu: View, MenuView {
     }
 }
 
-internal struct RightMenu: View, MenuView {
+internal struct RightMenuPanel: View, MenuView {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
 
@@ -72,8 +72,8 @@ internal struct RightMenu: View, MenuView {
 struct MenuView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
-            RightMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            LeftMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            RightMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
         }
     }
 }

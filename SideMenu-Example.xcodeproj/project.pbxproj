@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1811845822D87F640087C50A /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1811845722D87F640087C50A /* ShimmerView */; };
+		1811846222D87FCF0087C50A /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
+		1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */; };
+		1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */; };
+		1811846522D87FCF0087C50A /* SideMenuConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845F22D87FCF0087C50A /* SideMenuConfig.swift */; };
+		1811846622D87FCF0087C50A /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846022D87FCF0087C50A /* SideMenu.swift */; };
+		1811846722D87FCF0087C50A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846122D87FCF0087C50A /* MenuView.swift */; };
 		1830FC7D22BFA686005A52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7C22BFA686005A52D7 /* AppDelegate.swift */; };
 		1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */; };
-		1830FC8122BFA686005A52D7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC8022BFA686005A52D7 /* MainView.swift */; };
 		1830FC8322BFA687005A52D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8222BFA687005A52D7 /* Assets.xcassets */; };
 		1830FC8622BFA687005A52D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8522BFA687005A52D7 /* Preview Assets.xcassets */; };
 		1830FC8922BFA687005A52D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8722BFA687005A52D7 /* LaunchScreen.storyboard */; };
-		1830FC9422BFA687005A52D7 /* SideMenu_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC9322BFA687005A52D7 /* SideMenu_ExampleTests.swift */; };
-		1830FC9F22BFA687005A52D7 /* SideMenu_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC9E22BFA687005A52D7 /* SideMenu_ExampleUITests.swift */; };
-		1830FCAE22BFA865005A52D7 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 1830FCAD22BFA865005A52D7 /* SideMenu */; };
-		1830FCB022BFA9C6005A52D7 /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */; };
-		1830FCB222BFA9D1005A52D7 /* RightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB122BFA9D1005A52D7 /* RightMenu.swift */; };
-		1830FCB422BFAA16005A52D7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB322BFAA16005A52D7 /* HomeView.swift */; };
+		1866C34222C1094800C519AD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC8022BFA686005A52D7 /* MainView.swift */; };
+		1866C34322C1094800C519AD /* RightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB122BFA9D1005A52D7 /* RightMenu.swift */; };
+		1866C34422C1094800C519AD /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */; };
+		1866C34522C1094800C519AD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB322BFAA16005A52D7 /* HomeView.swift */; };
+		18A6D5BD22D82288006A3674 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 18A6D5BC22D82288006A3674 /* SocketIO */; };
+		18A6D5C022D82EA0006A3674 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D5BF22D82EA0006A3674 /* HomeViewModel.swift */; };
+		18E05D2E22C09B3100AD2007 /* LeftMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05D2D22C09B3100AD2007 /* LeftMenuViewModel.swift */; };
+		18E05D3022C09B4100AD2007 /* RightMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E05D2F22C09B4100AD2007 /* RightMenuViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +47,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1811845B22D87FCF0087C50A /* CenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterView.swift; sourceTree = "<group>"; };
+		1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragGestureValueExtension.swift; sourceTree = "<group>"; };
+		1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryProxyExtension.swift; sourceTree = "<group>"; };
+		1811845F22D87FCF0087C50A /* SideMenuConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuConfig.swift; sourceTree = "<group>"; };
+		1811846022D87FCF0087C50A /* SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		1811846122D87FCF0087C50A /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1830FC7922BFA686005A52D7 /* SideMenu-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideMenu-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1830FC7C22BFA686005A52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,14 +62,13 @@
 		1830FC8822BFA687005A52D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1830FC8A22BFA687005A52D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1830FC8F22BFA687005A52D7 /* SideMenu-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SideMenu-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1830FC9322BFA687005A52D7 /* SideMenu_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu_ExampleTests.swift; sourceTree = "<group>"; };
-		1830FC9522BFA687005A52D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1830FC9A22BFA687005A52D7 /* SideMenu-ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SideMenu-ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1830FC9E22BFA687005A52D7 /* SideMenu_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu_ExampleUITests.swift; sourceTree = "<group>"; };
-		1830FCA022BFA687005A52D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenu.swift; sourceTree = "<group>"; };
 		1830FCB122BFA9D1005A52D7 /* RightMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenu.swift; sourceTree = "<group>"; };
 		1830FCB322BFAA16005A52D7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18A6D5BF22D82EA0006A3674 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		18E05D2D22C09B3100AD2007 /* LeftMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuViewModel.swift; sourceTree = "<group>"; };
+		18E05D2F22C09B4100AD2007 /* RightMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1830FCAE22BFA865005A52D7 /* SideMenu in Frameworks */,
+				1811845822D87F640087C50A /* ShimmerView in Frameworks */,
+				18A6D5BD22D82288006A3674 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,12 +98,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1811845922D87FCF0087C50A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1811845A22D87FCF0087C50A /* SideMenu */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1811845A22D87FCF0087C50A /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1811845B22D87FCF0087C50A /* CenterView.swift */,
+				1811845C22D87FCF0087C50A /* Extensions */,
+				1811845F22D87FCF0087C50A /* SideMenuConfig.swift */,
+				1811846022D87FCF0087C50A /* SideMenu.swift */,
+				1811846122D87FCF0087C50A /* MenuView.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		1811845C22D87FCF0087C50A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */,
+				1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1830FC7022BFA686005A52D7 = {
 			isa = PBXGroup;
 			children = (
+				1811845922D87FCF0087C50A /* Sources */,
 				1830FC7B22BFA686005A52D7 /* SideMenu-Example */,
-				1830FC9222BFA687005A52D7 /* SideMenu-ExampleTests */,
-				1830FC9D22BFA687005A52D7 /* SideMenu-ExampleUITests */,
 				1830FC7A22BFA686005A52D7 /* Products */,
 				1830FCAC22BFA865005A52D7 /* Frameworks */,
 			);
@@ -108,12 +150,11 @@
 		1830FC7B22BFA686005A52D7 /* SideMenu-Example */ = {
 			isa = PBXGroup;
 			children = (
+				18A6D5BE22D82E13006A3674 /* Models */,
+				18E05D2C22C09AFD00AD2007 /* View Models */,
+				18E05D2B22C09AF400AD2007 /* Views */,
 				1830FC7C22BFA686005A52D7 /* AppDelegate.swift */,
 				1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */,
-				1830FC8022BFA686005A52D7 /* MainView.swift */,
-				1830FCB122BFA9D1005A52D7 /* RightMenu.swift */,
-				1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */,
-				1830FCB322BFAA16005A52D7 /* HomeView.swift */,
 				1830FC8222BFA687005A52D7 /* Assets.xcassets */,
 				1830FC8722BFA687005A52D7 /* LaunchScreen.storyboard */,
 				1830FC8A22BFA687005A52D7 /* Info.plist */,
@@ -130,29 +171,39 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1830FC9222BFA687005A52D7 /* SideMenu-ExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				1830FC9322BFA687005A52D7 /* SideMenu_ExampleTests.swift */,
-				1830FC9522BFA687005A52D7 /* Info.plist */,
-			);
-			path = "SideMenu-ExampleTests";
-			sourceTree = "<group>";
-		};
-		1830FC9D22BFA687005A52D7 /* SideMenu-ExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1830FC9E22BFA687005A52D7 /* SideMenu_ExampleUITests.swift */,
-				1830FCA022BFA687005A52D7 /* Info.plist */,
-			);
-			path = "SideMenu-ExampleUITests";
-			sourceTree = "<group>";
-		};
 		1830FCAC22BFA865005A52D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18A6D5BE22D82E13006A3674 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18E05D2B22C09AF400AD2007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1830FC8022BFA686005A52D7 /* MainView.swift */,
+				1830FCB122BFA9D1005A52D7 /* RightMenu.swift */,
+				1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */,
+				1830FCB322BFAA16005A52D7 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18E05D2C22C09AFD00AD2007 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				18E05D2D22C09B3100AD2007 /* LeftMenuViewModel.swift */,
+				18E05D2F22C09B4100AD2007 /* RightMenuViewModel.swift */,
+				18A6D5BF22D82EA0006A3674 /* HomeViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +223,8 @@
 			);
 			name = "SideMenu-Example";
 			packageProductDependencies = (
-				1830FCAD22BFA865005A52D7 /* SideMenu */,
+				18A6D5BC22D82288006A3674 /* SocketIO */,
+				1811845722D87F640087C50A /* ShimmerView */,
 			);
 			productName = "SideMenu-Example";
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
@@ -246,6 +298,10 @@
 				Base,
 			);
 			mainGroup = 1830FC7022BFA686005A52D7;
+			packageReferences = (
+				18A6D5BB22D82288006A3674 /* XCRemoteSwiftPackageReference "socket" */,
+				1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */,
+			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,12 +345,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1866C34522C1094800C519AD /* HomeView.swift in Sources */,
+				1811846222D87FCF0087C50A /* CenterView.swift in Sources */,
+				1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */,
+				1811846622D87FCF0087C50A /* SideMenu.swift in Sources */,
+				18A6D5C022D82EA0006A3674 /* HomeViewModel.swift in Sources */,
 				1830FC7D22BFA686005A52D7 /* AppDelegate.swift in Sources */,
-				1830FCB422BFAA16005A52D7 /* HomeView.swift in Sources */,
-				1830FCB022BFA9C6005A52D7 /* LeftMenu.swift in Sources */,
-				1830FCB222BFA9D1005A52D7 /* RightMenu.swift in Sources */,
+				1811846522D87FCF0087C50A /* SideMenuConfig.swift in Sources */,
+				1866C34422C1094800C519AD /* LeftMenu.swift in Sources */,
+				1866C34222C1094800C519AD /* MainView.swift in Sources */,
+				18E05D3022C09B4100AD2007 /* RightMenuViewModel.swift in Sources */,
+				1811846722D87FCF0087C50A /* MenuView.swift in Sources */,
 				1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */,
-				1830FC8122BFA686005A52D7 /* MainView.swift in Sources */,
+				1866C34322C1094800C519AD /* RightMenu.swift in Sources */,
+				1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */,
+				18E05D2E22C09B3100AD2007 /* LeftMenuViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +367,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1830FC9422BFA687005A52D7 /* SideMenu_ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1830FC9F22BFA687005A52D7 /* SideMenu_ExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,10 +681,35 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
+			requirement = {
+				kind = revision;
+				revision = 3cd7ee1eccd8f38d1546e2054747a5d173205090;
+			};
+		};
+		18A6D5BB22D82288006A3674 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		1830FCAD22BFA865005A52D7 /* SideMenu */ = {
+		1811845722D87F640087C50A /* ShimmerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = SideMenu;
+			package = 1811845622D87F640087C50A /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			productName = ShimmerView;
+		};
+		18A6D5BC22D82288006A3674 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18A6D5BB22D82288006A3674 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SideMenu
 
 struct MainView : View {
     
