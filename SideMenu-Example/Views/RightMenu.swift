@@ -14,8 +14,6 @@ internal struct RightMenu: View, MenuView {
     
     @Binding var centerView: AnyView?
     
-//    @BindableObject private var rightMenuViewModel = RightMenuViewModel()
-
     var body: some View {
         GeometryReader { geometry in
             HStack {
@@ -24,9 +22,9 @@ internal struct RightMenu: View, MenuView {
                     Spacer()
                     Text("Hello World!")
                     Button(action: {
-                        self.centerView = AnyView(HomeView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                        self.centerView = AnyView(OldestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
                         self.showRightMenu.toggle()
-                    }, label: { Text("Update center view").color(.black) })
+                    }, label: { Text("Show Old Photos").foregroundColor(Color.white) })
                     Spacer()
                     }.layoutPriority(1)
                 Spacer()
@@ -34,6 +32,13 @@ internal struct RightMenu: View, MenuView {
                 .background(Color.red)
                 .background(Rectangle().shadow(radius: 4))
         }
+    }
+    
+    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
+        self.$showLeftMenu = showLeftMenu ?? .constant(false)
+        self.$showRightMenu = showRightMenu ?? .constant(false)
+        
+        self.$centerView = centerView
     }
 }
 

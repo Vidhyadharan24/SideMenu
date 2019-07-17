@@ -63,36 +63,20 @@ public struct SideMenu : View {
     @State private var leftMenuBGOpacity: Double = 0
     @State private var rightMenuBGOpacity: Double = 0
     
-    @State private var leftMenuOffsetX: CGFloat = -UIScreen.main.bounds.width
-    @State private var rightMenuOffsetX: CGFloat = UIScreen.main.bounds.height
+    @State private var leftMenuOffsetX: CGFloat = 0
+    @State private var rightMenuOffsetX: CGFloat = 0
     
     private var menuAnimation: Animation {
         .basic(duration: self.config.animationDuration, curve: BasicAnimationTimingCurve.easeInOut)
     }
     
-    private var screenWidth: Length {
-        UIScreen.main.bounds.width
-    }
-    
-    private var menuXOffset: Length {
-        return (screenWidth - (self.config.menuWidth))/2
-    }
-    
     public var body: some View {
-        let menuOpenGesture = DragGesture()
-            .onChanged { (value) in
-                self.onChangedDragGesture(value: value)
-            }.onEnded { (value) in
-                self.onEndedDragGesture(value: value)
-        }
-        
         return GeometryReader { geometry in
             ZStack(alignment: .top) {
                 self.centerView?
                     .opacity(1)
                     .transition(.opacity)
                     .layoutPriority(1)
-                    .gesture(menuOpenGesture)
                 
                 if self.showLeftMenu {
                     MenuBackgroundView(showLeftMenu: self.$showLeftMenu,
@@ -101,7 +85,6 @@ public struct SideMenu : View {
                                height: geometry.actualScreenSize.height)
                         .opacity(self.leftMenuBGOpacity)
                         .zIndex(1)
-                        .gesture(menuOpenGesture)
                     
                     self.leftMenu?
                         .edgesIgnoringSafeArea(Edge.Set.all)
@@ -110,7 +93,6 @@ public struct SideMenu : View {
                         .offset(x: self.leftMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.leading))
                         .zIndex(2)
-                        .gesture(menuOpenGesture)
                 }
                 
                 if self.showRightMenu {
@@ -120,8 +102,6 @@ public struct SideMenu : View {
                                height: geometry.actualScreenSize.height)
                         .opacity(self.rightMenuBGOpacity)
                         .zIndex(3)
-                        .gesture(menuOpenGesture)
-                    
                     
                     self.rightMenu?
                         .edgesIgnoringSafeArea(Edge.Set.all)
@@ -130,20 +110,34 @@ public struct SideMenu : View {
                         .offset(x: self.rightMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.trailing))
                         .zIndex(4)
-                        .gesture(menuOpenGesture)
                 }
-                }.animation(self.menuAnimation)
-            }.onAppear {
-                self.leftMenuOffsetX = -self.menuXOffset
-                self.rightMenuOffsetX = self.menuXOffset
-                self.leftMenuBGOpacity = self.config.menuBGOpacity
-                self.rightMenuBGOpacity = self.config.menuBGOpacity
+            }.gesture(self.panelDragGesture(geometry.actualScreenSize.width))
+                .animation(self.menuAnimation)
+                .onAppear {
+                    self.leftMenuOffsetX = -self.menuXOffset(geometry.actualScreenSize.width)
+                    self.rightMenuOffsetX = self.menuXOffset(geometry.actualScreenSize.width)
+                    self.leftMenuBGOpacity = self.config.menuBGOpacity
+                    self.rightMenuBGOpacity = self.config.menuBGOpacity
+            }
         }
+    }
+    
+    private func panelDragGesture(_ screenWidth: Length) -> _EndedGesture<_ChangedGesture<DragGesture>> {
+        return DragGesture()
+            .onChanged { (value) in
+                self.onChangedDragGesture(value: value, screenWidth: screenWidth)
+        }.onEnded { (value) in
+            self.onEndedDragGesture(value: value, screenWidth: screenWidth)
+        }
+    }
+    
+    private func menuXOffset(_ screenWidth: Length) -> Length {
+        return (screenWidth - (self.config.menuWidth))/2
     }
     
     //  MARK: Drag gesture methods
     
-    func onChangedDragGesture(value: DragGesture.Value) {
+    func onChangedDragGesture(value: DragGesture.Value, screenWidth: Length) {
         guard !self.config.disableDragGesture else { return }
         
         let startLocX = value.startLocation.x
@@ -157,14 +151,14 @@ public struct SideMenu : View {
         guard translationWidth <= self.config.menuWidth else { return }
         
         if self.showLeftMenu, value.dragDirection == .left, self.leftMenu != nil {
-            let newXOffset = -self.menuXOffset - translationWidth
+            let newXOffset = -self.menuXOffset(screenWidth) - translationWidth
             self.leftMenuOffsetX = newXOffset
             
             let translationPercentage = (self.config.menuWidth - translationWidth) / self.config.menuWidth
             guard translationPercentage > 0 else { return }
             self.leftMenuBGOpacity = self.config.menuBGOpacity * Double(translationPercentage)
         } else if self.showRightMenu, value.dragDirection == .right, self.rightMenu != nil {
-            let newXOffset = self.menuXOffset + translationWidth
+            let newXOffset = self.menuXOffset(screenWidth) + translationWidth
             self.rightMenuOffsetX = newXOffset
             
             let translationPercentage = (self.config.menuWidth - translationWidth) / self.config.menuWidth
@@ -175,7 +169,7 @@ public struct SideMenu : View {
                 self.showLeftMenu.toggle()
             }
             
-            let defaultOffset = -(self.menuXOffset + self.config.menuWidth)
+            let defaultOffset = -(self.menuXOffset(screenWidth) + self.config.menuWidth)
             let newXOffset = defaultOffset + translationWidth
             
             self.leftMenuOffsetX = newXOffset
@@ -189,7 +183,7 @@ public struct SideMenu : View {
                 self.showRightMenu.toggle()
             }
             
-            let defaultOffset = self.menuXOffset + self.config.menuWidth
+            let defaultOffset = self.menuXOffset(screenWidth) + self.config.menuWidth
             let newXOffset = defaultOffset - translationWidth
             
             self.rightMenuOffsetX = newXOffset
@@ -200,28 +194,28 @@ public struct SideMenu : View {
         }
     }
     
-    func onEndedDragGesture(value: DragGesture.Value) {
+    func onEndedDragGesture(value: DragGesture.Value, screenWidth: Length) {
         guard !self.config.disableDragGesture else { return }
         
         let midXPoint = (0.5 * self.config.menuWidth)
         
         if self.showRightMenu, self.rightMenu != nil {
-            let rightMenuMidX = self.menuXOffset + midXPoint
+            let rightMenuMidX = self.menuXOffset(screenWidth) + midXPoint
             
             if self.rightMenuOffsetX > rightMenuMidX {
                 self.showRightMenu.toggle()
             }
             
-            self.rightMenuOffsetX = self.menuXOffset
+            self.rightMenuOffsetX = self.menuXOffset(screenWidth)
             self.rightMenuBGOpacity = self.config.menuBGOpacity
         } else if self.showLeftMenu, self.leftMenu != nil {
-            let leftMenuMidX = -self.menuXOffset - midXPoint
+            let leftMenuMidX = -self.menuXOffset(screenWidth) - midXPoint
             
             if self.leftMenuOffsetX < leftMenuMidX {
                 self.showLeftMenu.toggle()
             }
             
-            self.leftMenuOffsetX = -self.menuXOffset
+            self.leftMenuOffsetX = -self.menuXOffset(screenWidth)
             self.leftMenuBGOpacity = self.config.menuBGOpacity
         }
     }
@@ -239,7 +233,7 @@ struct MenuBackgroundView : View {
             .background(Color.black)
             .transition(.opacity)
             .tapAction {
-                withAnimation() {
+                withAnimation {
                     if self.showLeftMenu {
                         self.showLeftMenu.toggle()
                     }
@@ -248,8 +242,8 @@ struct MenuBackgroundView : View {
                         self.showRightMenu.toggle()
                     }
                 }
-            }
-            .edgesIgnoringSafeArea(Edge.Set.all)
+        }
+        .edgesIgnoringSafeArea(Edge.Set.all)
     }
 }
 
@@ -280,10 +274,3 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
-
-
-
-
-
-
-

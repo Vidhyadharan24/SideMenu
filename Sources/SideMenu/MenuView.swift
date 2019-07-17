@@ -10,7 +10,7 @@ import SwiftUI
 
 public protocol MenuView: View {
     
-    init(showLeftMenu: Binding<Bool>, showRightMenu: Binding<Bool>, centerView: Binding<AnyView?>)
+    init(showLeftMenu: Binding<Bool>?, showRightMenu: Binding<Bool>?, centerView: Binding<AnyView?>)
     
 }
 
@@ -39,6 +39,13 @@ internal struct LeftMenuPanel: View, MenuView {
                 .background(Rectangle().shadow(radius: 4))
         }
     }
+    
+    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
+        self.$showLeftMenu = showLeftMenu ?? .constant(false)
+        self.$showRightMenu = showRightMenu ?? .constant(false)
+        
+        self.$centerView = centerView
+    }
 }
 
 internal struct RightMenuPanel: View, MenuView {
@@ -65,6 +72,13 @@ internal struct RightMenuPanel: View, MenuView {
                 .background(Color.red)
                 .background(Rectangle().shadow(radius: 4))
         }
+    }
+    
+    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
+        self.$showLeftMenu = showLeftMenu ?? .constant(false)
+        self.$showRightMenu = showRightMenu ?? .constant(false)
+        
+        self.$centerView = centerView
     }
 }
 

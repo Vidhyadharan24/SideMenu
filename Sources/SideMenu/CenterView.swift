@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-public protocol CenterView {
+public protocol CenterView: View {
     
-    init(leftMenuState: Binding<Bool>, rightMenuState: Binding<Bool>)
+    init(leftMenuState: Binding<Bool>?, rightMenuState: Binding<Bool>?)
     
 }
 
@@ -22,19 +22,24 @@ internal struct CenterMenuView : View, CenterView {
         NavigationView {
             VStack(spacing: 10) {                
                 Button(action: {
-                    withAnimation(.basic(duration: 4)) {
+                    withAnimation {
                         self.leftMenuState.toggle()
                     }
                 }, label: { Text("Show left menu") })
                 
                 Button(action: {
-                    withAnimation(.basic(duration: 4)) {
+                    withAnimation {
                         self.rightMenuState.toggle()
                     }
                 }, label: { Text("Show right menu") })
             }
             .navigationBarTitle(Text("Center View"))
         }
+    }
+    
+    init(leftMenuState: Binding<Bool>? = nil, rightMenuState: Binding<Bool>? = nil) {
+        self.$leftMenuState = leftMenuState ?? .constant(false)
+        self.$rightMenuState = rightMenuState ?? .constant(false)
     }
 }
 

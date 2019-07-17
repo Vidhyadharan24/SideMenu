@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ShimmerView
 
 struct MainView : View {
     
@@ -22,8 +23,9 @@ struct MainView : View {
         return SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu,
                         rightMenu: rightMenu, showRightMenu: $showRightMenu,
                         centerView: $centerView)
+            .environmentObject(ShimmerConfig())
             .onAppear {
-                self.centerView = AnyView(HomeView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                self.centerView = AnyView(LatestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
         }
     }
 }
