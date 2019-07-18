@@ -17,27 +17,28 @@ public protocol MenuView: View {
 internal struct LeftMenuPanel: View, MenuView {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
-
+    
     @Binding var centerView: AnyView?
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            VStack(spacing: 10) {
                 Spacer()
-                VStack(spacing: 10) {
-                    Spacer()
-                    Text("Hello World!")
-                    Button(action: {
+                Text("Hello World!")
+                Button(action: {
+                    withAnimation {
                         self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
                         self.showLeftMenu.toggle()
-                    }, label: { Text("Update center view").color(.black) })
-                    Spacer()
-                }.layoutPriority(1)
+                    }
+                }, label: {
+                    Text("Update center view")
+                        .color(.black)
+                })
                 Spacer()
-                }
-                .background(Color.blue)
-                .background(Rectangle().shadow(radius: 4))
+            }.relativeSize(width: 1, height: 1)
         }
+        .background(Color.blue)
+        .background(Rectangle().shadow(radius: 4))
     }
     
     init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
@@ -51,27 +52,28 @@ internal struct LeftMenuPanel: View, MenuView {
 internal struct RightMenuPanel: View, MenuView {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
-
+    
     @Binding var centerView: AnyView?
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            VStack(spacing: 10) {
                 Spacer()
-                VStack(spacing: 10) {
-                    Spacer()
-                    Text("Hello World!")
-                    Button(action: {
+                Text("Hello World!")
+                Button(action: {
+                    withAnimation {
                         self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
                         self.showRightMenu.toggle()
-                    }, label: { Text("Update center view").color(.black) })
-                    Spacer()
-                    }.layoutPriority(1)
+                    }
+                }, label: {
+                    Text("Update center view")
+                        .color(.black)
+                })
                 Spacer()
-                }
-                .background(Color.red)
-                .background(Rectangle().shadow(radius: 4))
+            }.relativeSize(width: 1, height: 1)
         }
+        .background(Color.red)
+            .background(Rectangle().shadow(radius: 4))
     }
     
     init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {

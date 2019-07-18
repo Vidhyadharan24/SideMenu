@@ -24,32 +24,11 @@ class PhotoLoaderViewModel: BindableObject {
     
     var imageUrlString: String? = nil
     
-    var state: ViewState<UIImage> = .completed(response: #imageLiteral(resourceName: "placeholder")) {
+    var state: ViewState<UIImage> = .completedWithNoData {
         didSet {
             withAnimation {
                 didChange.send(self)
             }
-        }
-    }
-    
-    var isLoading: Bool {
-        get {
-            guard case .loading = self.state else { return false }
-            return true
-        }
-    }
-    
-    var errorMessage: String {
-        get {
-            guard case .failed(let errorMsg) = self.state else { return "" }
-            return errorMsg
-        }
-    }
-    
-    var image: UIImage {
-        get {
-            guard case .completed(let image) = self.state else { return #imageLiteral(resourceName: "placeholder") }
-            return image
         }
     }
     
@@ -104,7 +83,11 @@ class PhotoLoaderViewModel: BindableObject {
         // attach `responseSubject` with closure handler, here we process `models` setter
         _ = self.responseSubject
             .sink { [weak self] image in
-                self?.state = .completed(response: image ??  #imageLiteral(resourceName: "placeholder"))
+                if let loadedImage = image {
+                    self?.state = .completed(response: loadedImage)
+                } else {
+                    self?.state = .completedWithNoData
+                }
         }
         
         // collect AnyCancellable subjects to discard later when `SplashViewModel` life cycle ended

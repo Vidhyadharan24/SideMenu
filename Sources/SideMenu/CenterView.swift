@@ -25,13 +25,15 @@ internal struct CenterMenuView : View, CenterView {
                     withAnimation {
                         self.leftMenuState.toggle()
                     }
-                }, label: { Text("Show left menu") })
+                }, label: {
+                    Text("Show left menu") })
                 
                 Button(action: {
                     withAnimation {
                         self.rightMenuState.toggle()
                     }
-                }, label: { Text("Show right menu") })
+                }, label: {
+                    Text("Show right menu") })
             }
             .navigationBarTitle(Text("Center View"))
         }
@@ -50,10 +52,3 @@ struct CenterView_Previews : PreviewProvider {
     }
 }
 #endif
-
-
-
-
-
-
-

@@ -76,9 +76,8 @@ public struct SideMenu : View {
                 self.centerView?
                     .opacity(1)
                     .transition(.opacity)
-                    .layoutPriority(1)
                 
-                if self.showLeftMenu {
+                if self.showLeftMenu && self.leftMenu != nil {
                     MenuBackgroundView(showLeftMenu: self.$showLeftMenu,
                                        showRightMenu: self.$showRightMenu)
                         .frame(width: geometry.actualScreenSize.width,
@@ -86,7 +85,7 @@ public struct SideMenu : View {
                         .opacity(self.leftMenuBGOpacity)
                         .zIndex(1)
                     
-                    self.leftMenu?
+                    self.leftMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
                         .frame(width: self.config.menuWidth,
                                height: geometry.actualScreenSize.height)
@@ -95,7 +94,7 @@ public struct SideMenu : View {
                         .zIndex(2)
                 }
                 
-                if self.showRightMenu {
+                if self.showRightMenu && self.rightMenu != nil {
                     MenuBackgroundView(showLeftMenu: self.$showLeftMenu,
                                        showRightMenu: self.$showRightMenu)
                         .frame(width: geometry.actualScreenSize.width,
@@ -103,7 +102,7 @@ public struct SideMenu : View {
                         .opacity(self.rightMenuBGOpacity)
                         .zIndex(3)
                     
-                    self.rightMenu?
+                    self.rightMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
                         .frame(width: self.config.menuWidth,
                                height: geometry.actualScreenSize.height)
@@ -260,15 +259,21 @@ struct ContentView_Previews : PreviewProvider {
         
         return Group {
             SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, centerView: $centerView).onAppear {
-                self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                withAnimation {
+                    self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                }
             }
             
             SideMenu(rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
-                self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                withAnimation {
+                    self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                }
             }
             
             SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
-                self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                withAnimation {
+                    self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                }
             }
         }
     }

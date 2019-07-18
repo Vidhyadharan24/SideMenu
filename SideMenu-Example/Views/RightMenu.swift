@@ -16,22 +16,24 @@ internal struct RightMenu: View, MenuView {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            VStack(spacing: 10) {
                 Spacer()
-                VStack(spacing: 10) {
-                    Spacer()
-                    Text("Hello World!")
-                    Button(action: {
+                Text("Hello World!")
+                    .foregroundColor(Color.black)
+                Button(action: {
+                    withAnimation {
                         self.centerView = AnyView(OldestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
                         self.showRightMenu.toggle()
-                    }, label: { Text("Show Old Photos").foregroundColor(Color.white) })
-                    Spacer()
-                    }.layoutPriority(1)
+                    }
+                }, label: {
+                    Text("Show Old Photos")
+                        .foregroundColor(Color.black)
+                })
                 Spacer()
-                }
-                .background(Color.red)
-                .background(Rectangle().shadow(radius: 4))
+            }.relativeSize(width: 1, height: 1)
         }
+        .background(Color.red)
+        .background(Rectangle().shadow(radius: 4))
     }
     
     init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {

@@ -18,22 +18,7 @@ struct OldestPhotosView: View, CenterView {
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
-                // loading indicator label
-                if viewModel.isLoading {
-                    List {
-                        ForEach(1...3) { row in
-                            ListPhotoRow(shouldShimmer: true)
-                        }
-                    }
-                } else if !viewModel.errorMessage.isEmpty {
-                    Text(viewModel.errorMessage)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
-                } else if viewModel.errorMessage.isEmpty {
-                    List(viewModel.photos) { photo in
-                        ListPhotoRow(photo: photo)
-                    }
-                }
+                containedView()
             }
             .navigationBarTitle("Oldest", displayMode: .inline)
             .navigationBarItems(
@@ -60,6 +45,30 @@ struct OldestPhotosView: View, CenterView {
         }
     }
     
+    func containedView() -> AnyView {
+        let view: AnyView
+        switch viewModel.state {
+        case .loading:
+            view = AnyView(List {
+                ForEach(1...3) { row in
+                    ListPhotoRow(shouldShimmer: true)
+                }
+            })
+        case .completedWithNoData:
+            view = AnyView(Text("No photos"))
+        case .completed(let photos):
+            view = AnyView(List(photos) { photo in
+                ListPhotoRow(photo: photo)
+            })
+        case .failed(let errorMessage):
+            view = AnyView(Text(errorMessage)
+                .lineLimit(nil)
+                .multilineTextAlignment(.center))
+        }
+        
+        return view
+    }
+    
     // MARK: - Private
     
     private func fetchData() {
@@ -80,9 +89,3 @@ struct OldestPhotosView_Previews : PreviewProvider {
     }
 }
 #endif
-
-
-
-
-
-

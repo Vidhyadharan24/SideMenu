@@ -25,7 +25,9 @@ struct MainView : View {
                         centerView: $centerView)
             .environmentObject(ShimmerConfig())
             .onAppear {
-                self.centerView = AnyView(LatestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                withAnimation {
+                    self.centerView = AnyView(LatestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                }
         }
     }
 }

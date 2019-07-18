@@ -11,28 +11,48 @@ import ShimmerView
 
 struct NetworkImageView: View {
     
-    @ObjectBinding var photoListViewModel: PhotoLoaderViewModel
+    @ObjectBinding var photoLoaderViewModel: PhotoLoaderViewModel
     
     let urlString: String?
     let shouldShimmer: Bool
     
     var body: some View {
-        Image(uiImage: photoListViewModel.image)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .shimmer(isActive: shouldShimmer || self.photoListViewModel.isLoading)
+        containedView()
     }
     
     init(urlString: String?, shouldShimmer: Bool) {
-        self.photoListViewModel = PhotoLoaderViewModel(urlString: urlString)
+        self.photoLoaderViewModel = PhotoLoaderViewModel(urlString: urlString)
         self.urlString = urlString
         self.shouldShimmer = shouldShimmer
         fetchImage()
     }
     
     func fetchImage() {
-        self.photoListViewModel.fetchImage(urlString: self.urlString)
+        self.photoLoaderViewModel.fetchImage(urlString: self.urlString)
     }
     
+    func containedView() -> AnyView {
+        let image: UIImage
+        let shouldShowShimmer: Bool
+        switch photoLoaderViewModel.state {
+        case .loading:
+            shouldShowShimmer = true
+            image = #imageLiteral(resourceName: "placeholder")
+        case .completedWithNoData:
+            shouldShowShimmer = false
+            image = #imageLiteral(resourceName: "placeholder")
+        case .completed(let loadedImage):
+            shouldShowShimmer = false
+            image = loadedImage
+        case .failed(_):
+            shouldShowShimmer = false
+            image = #imageLiteral(resourceName: "placeholder")
+        }
+        
+        return AnyView(Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .shimmer(isActive: shouldShimmer || shouldShowShimmer))
+    }
 }
 
