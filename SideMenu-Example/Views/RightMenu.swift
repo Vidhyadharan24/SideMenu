@@ -30,17 +30,17 @@ internal struct RightMenu: View, MenuView {
                         .foregroundColor(Color.black)
                 })
                 Spacer()
-            }.relativeSize(width: 1, height: 1)
+            }
         }
         .background(Color.red)
         .background(Rectangle().shadow(radius: 4))
     }
     
-    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
-        self.$showLeftMenu = showLeftMenu ?? .constant(false)
-        self.$showRightMenu = showRightMenu ?? .constant(false)
+    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
+        self._showLeftMenu = showLeftMenu
+        self._showRightMenu = showRightMenu
         
-        self.$centerView = centerView
+        self._centerView = centerView
     }
 }
 

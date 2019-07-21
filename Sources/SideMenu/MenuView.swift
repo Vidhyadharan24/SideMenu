@@ -10,7 +10,7 @@ import SwiftUI
 
 public protocol MenuView: View {
     
-    init(showLeftMenu: Binding<Bool>?, showRightMenu: Binding<Bool>?, centerView: Binding<AnyView?>)
+    init(showLeftMenu: Binding<Bool>, showRightMenu: Binding<Bool>, centerView: Binding<AnyView?>)
     
 }
 
@@ -27,25 +27,25 @@ internal struct LeftMenuPanel: View, MenuView {
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                        self.centerView = AnyView(CenterMenuView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
                         self.showLeftMenu.toggle()
                     }
                 }, label: {
                     Text("Update center view")
-                        .color(.black)
+                        .foregroundColor(.black)
                 })
                 Spacer()
-            }.relativeSize(width: 1, height: 1)
+            }
         }
         .background(Color.blue)
         .background(Rectangle().shadow(radius: 4))
     }
     
-    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
-        self.$showLeftMenu = showLeftMenu ?? .constant(false)
-        self.$showRightMenu = showRightMenu ?? .constant(false)
-        
-        self.$centerView = centerView
+    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
+        self._showLeftMenu = showLeftMenu
+        self._showRightMenu = showRightMenu
+
+        self._centerView = centerView
     }
 }
 
@@ -62,25 +62,25 @@ internal struct RightMenuPanel: View, MenuView {
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                        self.centerView = AnyView(CenterMenuView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
                         self.showRightMenu.toggle()
                     }
                 }, label: {
                     Text("Update center view")
-                        .color(.black)
+                        .foregroundColor(.black)
                 })
                 Spacer()
-            }.relativeSize(width: 1, height: 1)
+            }
         }
         .background(Color.red)
             .background(Rectangle().shadow(radius: 4))
     }
     
-    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
-        self.$showLeftMenu = showLeftMenu ?? .constant(false)
-        self.$showRightMenu = showRightMenu ?? .constant(false)
+    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
+        self._showLeftMenu = showLeftMenu
+        self._showRightMenu = showRightMenu
         
-        self.$centerView = centerView
+        self._centerView = centerView
     }
 }
 

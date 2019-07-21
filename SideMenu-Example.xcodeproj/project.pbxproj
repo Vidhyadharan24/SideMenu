@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1803896622DF4F840044A3C8 /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1803896522DF4F840044A3C8 /* ShimmerView */; };
 		1811846222D87FCF0087C50A /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
 		1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */; };
 		1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */; };
@@ -39,6 +38,7 @@
 		1866C34322C1094800C519AD /* RightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB122BFA9D1005A52D7 /* RightMenu.swift */; };
 		1866C34422C1094800C519AD /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */; };
 		1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB322BFAA16005A52D7 /* LatestPhotosView.swift */; };
+		1895D0A222E482DD009245EC /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1895D0A122E482DD009245EC /* ShimmerView */; };
 		189D933B22DA17D100AFD95F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D933922D9887B00AFD95F /* APIService.swift */; };
 		189D933F22DA229800AFD95F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D933E22DA229800AFD95F /* NetworkError.swift */; };
 		189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934022DA237A00AFD95F /* PhotosEndPoint.swift */; };
@@ -94,7 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1858C57D22DA7F3300AE3AD2 /* SFSafeSymbols in Frameworks */,
-				1803896622DF4F840044A3C8 /* ShimmerView in Frameworks */,
+				1895D0A222E482DD009245EC /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +259,7 @@
 			name = "SideMenu-Example";
 			packageProductDependencies = (
 				1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */,
-				1803896522DF4F840044A3C8 /* ShimmerView */,
+				1895D0A122E482DD009245EC /* ShimmerView */,
 			);
 			productName = "SideMenu-Example";
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
@@ -291,7 +291,7 @@
 			mainGroup = 1830FC7022BFA686005A52D7;
 			packageReferences = (
 				1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
-				1803896422DF4F840044A3C8 /* XCRemoteSwiftPackageReference "ShimmerView" */,
+				1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
@@ -548,14 +548,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1803896422DF4F840044A3C8 /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/piknotech/SFSafeSymbols.git";
@@ -564,18 +556,26 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1803896522DF4F840044A3C8 /* ShimmerView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1803896422DF4F840044A3C8 /* XCRemoteSwiftPackageReference "ShimmerView" */;
-			productName = ShimmerView;
-		};
 		1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		1895D0A122E482DD009245EC /* ShimmerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			productName = ShimmerView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

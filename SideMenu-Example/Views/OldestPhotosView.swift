@@ -75,9 +75,9 @@ struct OldestPhotosView: View, CenterView {
         self.viewModel.fetchPhotos(orderBy: .oldest)
     }
     
-    init(leftMenuState: Binding<Bool>? = nil, rightMenuState: Binding<Bool>? = nil) {
-        self.$leftMenuState = leftMenuState ?? .constant(false)
-        self.$rightMenuState = rightMenuState ?? .constant(false)
+    init(leftMenuState: Binding<Bool> = .constant(false), rightMenuState: Binding<Bool> = .constant(false)) {
+        self._leftMenuState = leftMenuState
+        self._rightMenuState = rightMenuState
         fetchData()
     }
 }

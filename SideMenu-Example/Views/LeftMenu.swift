@@ -26,19 +26,21 @@ internal struct LeftMenu: View, MenuView {
                         self.showLeftMenu.toggle()
                     }
                 }, label: {
-                    Text("Show Popular Photos").color(.black) })
+                    Text("Show Popular Photos")
+                        .foregroundColor(.black)
+                })
                 Spacer()
-            }.relativeSize(width: 1, height: 1)
+            }
         }
         .background(Color.blue)
-            .background(Rectangle().shadow(radius: 4))
+        .background(Rectangle().shadow(radius: 4))
     }
     
-    init(showLeftMenu: Binding<Bool>? = nil, showRightMenu: Binding<Bool>? = nil, centerView: Binding<AnyView?>) {
-        self.$showLeftMenu = showLeftMenu ?? .constant(false)
-        self.$showRightMenu = showRightMenu ?? .constant(false)
+    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
+        self._showLeftMenu = showLeftMenu
+        self._showRightMenu = showRightMenu
         
-        self.$centerView = centerView
+        self._centerView = centerView
     }
 }
 

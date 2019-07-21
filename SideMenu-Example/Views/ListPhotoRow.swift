@@ -16,7 +16,6 @@ struct ListPhotoRow : View {
     
     var body: some View {
         NetworkImageView(urlString: self.photo?.urls.regular, shouldShimmer: self.shouldShimmer)
-            .relativeWidth(1)
             .frame(height: 250)
             .clipped()
 //            .cornerRadius(5)

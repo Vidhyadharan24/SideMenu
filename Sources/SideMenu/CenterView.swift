@@ -10,7 +10,7 @@ import SwiftUI
 
 public protocol CenterView: View {
     
-    init(leftMenuState: Binding<Bool>?, rightMenuState: Binding<Bool>?)
+    init(leftMenuState: Binding<Bool>, rightMenuState: Binding<Bool>)
     
 }
 
@@ -39,9 +39,9 @@ internal struct CenterMenuView : View, CenterView {
         }
     }
     
-    init(leftMenuState: Binding<Bool>? = nil, rightMenuState: Binding<Bool>? = nil) {
-        self.$leftMenuState = leftMenuState ?? .constant(false)
-        self.$rightMenuState = rightMenuState ?? .constant(false)
+    init(leftMenuState: Binding<Bool> = .constant(false), rightMenuState: Binding<Bool> = .constant(false)) {
+        self._leftMenuState = leftMenuState
+        self._rightMenuState = rightMenuState
     }
 }
 

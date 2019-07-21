@@ -11,40 +11,27 @@ import Combine
 
 class PhotoLoaderViewModel: BindableObject {
     typealias ViewModelSubject = PassthroughSubject<PhotoLoaderViewModel, Never>
-    typealias ResponseSubject = PassthroughSubject<UIImage?, NetworkError>
-
+    
     private lazy var imageLoader = ImageLoader()
-
-    internal let didChange = ViewModelSubject()
-    private let responseSubject = ResponseSubject()
-    private let errorSubject = ResponseSubject()
+    
+    internal let willChange = ViewModelSubject()
     private var cancellables = [AnyCancellable]()
-    
-    let imageCache = NSCache<NSString, UIImage>()
-    
-    var imageUrlString: String? = nil
-    
+            
     var state: ViewState<UIImage> = .completedWithNoData {
-        didSet {
+        willSet {
             withAnimation {
-                didChange.send(self)
+                willChange.send(self)
             }
         }
     }
     
-    init(urlString: String?) {
-        fetchImage(urlString: self.imageUrlString)
-    }
     
     deinit {
         cancel()
     }
     
     func fetchImage(urlString: String?) {
-        guard let urlString = urlString,
-            (imageUrlString == nil || imageUrlString! != urlString)  else {
-            return
-        }
+        guard let urlString = urlString else { return }
         
         guard let url = URL(string: urlString) else {
             cancel()
@@ -52,9 +39,7 @@ class PhotoLoaderViewModel: BindableObject {
         }
         
         cancel()
-        
-        imageUrlString = urlString
-
+                
         let urlRequest = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         if let data = URLCache.shared.cachedResponse(for: urlRequest)?.data, let cachedImage = UIImage(data: data) {
             self.state = .completed(response: cachedImage)
@@ -64,34 +49,24 @@ class PhotoLoaderViewModel: BindableObject {
         self.state = .loading
         
         let responsePublisher = self.imageLoader.loadImage(urlRequest)
-        
 
-        // map responseStream into AnyCancellable
         let responseStream = responsePublisher
-            .share() // return as class instance (this is later to cancel on AnyCancellable)
-            .subscribe(self.responseSubject) // attach to an `responseSubject` subscriber
-        
-        // map errorStream into AnyCancellable
-        let errorStream = responsePublisher
-            .catch { [weak self] error -> Publishers.Empty<UIImage?, NetworkError> in // catch `self.networkRequest.fetchListSignal()` event error
-                self?.state = .failed(error: error.message)
-                return Publishers.Empty()
-        }
-        .share()
-        .subscribe(self.errorSubject)
-        
-        // attach `responseSubject` with closure handler, here we process `models` setter
-        _ = self.responseSubject
-            .sink { [weak self] image in
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self?.state = .failed(error: error.message)
+                }
+            }, receiveValue: { [weak self] image in
                 if let loadedImage = image {
                     self?.state = .completed(response: loadedImage)
                 } else {
                     self?.state = .completedWithNoData
                 }
-        }
+            })
         
-        // collect AnyCancellable subjects to discard later when `SplashViewModel` life cycle ended
-        self.cancellables += [responseStream, errorStream]
+        // collect AnyCancellable subjects to discard later when `PhotoLoaderViewModel` life cycle ended
+        self.cancellables += [responseStream]
     }
     
     func cancel() {
