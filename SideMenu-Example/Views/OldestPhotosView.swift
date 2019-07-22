@@ -9,7 +9,7 @@
 import SwiftUI
 import SFSafeSymbols
 
-struct OldestPhotosView: View, CenterView {
+struct OldestPhotosView: View {
     @Binding var leftMenuState: Bool
     @Binding var rightMenuState: Bool
     

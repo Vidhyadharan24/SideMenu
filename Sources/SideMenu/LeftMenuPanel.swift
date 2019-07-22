@@ -1,14 +1,15 @@
 //
-//  LeftMenu.swift
-//  SideMenu-Example
+//  LeftMenuPanel.swift
+//  SideMenu
 //
-//  Created by Vidhyadharan Mohanram on 23/06/19.
+//  Created by Vidhyadharan Mohanram on 22/07/19.
 //  Copyright © 2019 Vid. All rights reserved.
 //
 
+
 import SwiftUI
 
-internal struct LeftMenu: View {
+internal struct LeftMenuPanel: View {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
     
@@ -19,14 +20,13 @@ internal struct LeftMenu: View {
             VStack(spacing: 10) {
                 Spacer()
                 Text("Hello World!")
-                    .foregroundColor(Color.black)
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(PopularPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                        self.centerView = AnyView(CenterView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
                         self.showLeftMenu.toggle()
                     }
                 }, label: {
-                    Text("Show Popular Photos")
+                    Text("Update center view")
                         .foregroundColor(.black)
                 })
                 Spacer()
@@ -39,20 +39,7 @@ internal struct LeftMenu: View {
     init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
         self._showLeftMenu = showLeftMenu
         self._showRightMenu = showRightMenu
-        
+
         self._centerView = centerView
     }
 }
-
-#if DEBUG
-struct LeftMenu_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
-                .previewDevice("iPhone Xs")
-                .environment(\.colorScheme, .dark)
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
-        }
-    }
-}
-#endif

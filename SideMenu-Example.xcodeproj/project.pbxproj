@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1811846222D87FCF0087C50A /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
 		1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845D22D87FCF0087C50A /* DragGestureValueExtension.swift */; };
 		1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */; };
 		1811846522D87FCF0087C50A /* SideMenuConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845F22D87FCF0087C50A /* SideMenuConfig.swift */; };
 		1811846622D87FCF0087C50A /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846022D87FCF0087C50A /* SideMenu.swift */; };
-		1811846722D87FCF0087C50A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846122D87FCF0087C50A /* MenuView.swift */; };
+		1811846722D87FCF0087C50A /* LeftMenuPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811846122D87FCF0087C50A /* LeftMenuPanel.swift */; };
 		1830FC7D22BFA686005A52D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7C22BFA686005A52D7 /* AppDelegate.swift */; };
 		1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */; };
 		1830FC8322BFA687005A52D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8222BFA687005A52D7 /* Assets.xcassets */; };
@@ -38,12 +37,14 @@
 		1866C34322C1094800C519AD /* RightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB122BFA9D1005A52D7 /* RightMenu.swift */; };
 		1866C34422C1094800C519AD /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */; };
 		1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB322BFAA16005A52D7 /* LatestPhotosView.swift */; };
-		1895D0A222E482DD009245EC /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 1895D0A122E482DD009245EC /* ShimmerView */; };
+		1872424222E5BC19001708DB /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
+		1872424422E5BCC6001708DB /* RightMenuPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872424322E5BCC6001708DB /* RightMenuPanel.swift */; };
 		189D933B22DA17D100AFD95F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D933922D9887B00AFD95F /* APIService.swift */; };
 		189D933F22DA229800AFD95F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D933E22DA229800AFD95F /* NetworkError.swift */; };
 		189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934022DA237A00AFD95F /* PhotosEndPoint.swift */; };
 		189D934322DA296900AFD95F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934222DA296900AFD95F /* Constants.swift */; };
 		18A6D5C022D82EA0006A3674 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D5BF22D82EA0006A3674 /* PhotosViewModel.swift */; };
+		18D1EBEE22E57AB700D88666 /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 18D1EBED22E57AB700D88666 /* ShimmerView */; };
 		18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D883CA22DB2A6E00286F39 /* PhotoLoaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +54,7 @@
 		1811845E22D87FCF0087C50A /* GeometryProxyExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryProxyExtension.swift; sourceTree = "<group>"; };
 		1811845F22D87FCF0087C50A /* SideMenuConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuConfig.swift; sourceTree = "<group>"; };
 		1811846022D87FCF0087C50A /* SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
-		1811846122D87FCF0087C50A /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		1811846122D87FCF0087C50A /* LeftMenuPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuPanel.swift; sourceTree = "<group>"; };
 		1830FC7922BFA686005A52D7 /* SideMenu-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideMenu-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1830FC7C22BFA686005A52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		1858C57E22DAFC1B00AE3AD2 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1858C58222DB05C000AE3AD2 /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 		1864AA7422E035FA002406F5 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		1872424322E5BCC6001708DB /* RightMenuPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenuPanel.swift; sourceTree = "<group>"; };
 		189D933922D9887B00AFD95F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		189D933E22DA229800AFD95F /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		189D934022DA237A00AFD95F /* PhotosEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosEndPoint.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1858C57D22DA7F3300AE3AD2 /* SFSafeSymbols in Frameworks */,
-				1895D0A222E482DD009245EC /* ShimmerView in Frameworks */,
+				18D1EBEE22E57AB700D88666 /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +118,8 @@
 				1811845C22D87FCF0087C50A /* Extensions */,
 				1811845F22D87FCF0087C50A /* SideMenuConfig.swift */,
 				1811846022D87FCF0087C50A /* SideMenu.swift */,
-				1811846122D87FCF0087C50A /* MenuView.swift */,
+				1811846122D87FCF0087C50A /* LeftMenuPanel.swift */,
+				1872424322E5BCC6001708DB /* RightMenuPanel.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 			name = "SideMenu-Example";
 			packageProductDependencies = (
 				1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */,
-				1895D0A122E482DD009245EC /* ShimmerView */,
+				18D1EBED22E57AB700D88666 /* ShimmerView */,
 			);
 			productName = "SideMenu-Example";
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
@@ -291,7 +294,7 @@
 			mainGroup = 1830FC7022BFA686005A52D7;
 			packageReferences = (
 				1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
-				1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */,
+				18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
@@ -323,7 +326,6 @@
 				1858C57322DA748B00AE3AD2 /* User.swift in Sources */,
 				1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */,
 				1858C57F22DAFC1B00AE3AD2 /* ImageLoader.swift in Sources */,
-				1811846222D87FCF0087C50A /* CenterView.swift in Sources */,
 				189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */,
 				18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */,
 				1811846422D87FCF0087C50A /* GeometryProxyExtension.swift in Sources */,
@@ -339,16 +341,18 @@
 				18570C5122DDAE160025E653 /* OldestPhotosView.swift in Sources */,
 				1858C57422DA748B00AE3AD2 /* UserLinks.swift in Sources */,
 				1858C58322DB05C000AE3AD2 /* NetworkImageView.swift in Sources */,
+				1872424422E5BCC6001708DB /* RightMenuPanel.swift in Sources */,
 				189D933B22DA17D100AFD95F /* APIService.swift in Sources */,
 				1811846522D87FCF0087C50A /* SideMenuConfig.swift in Sources */,
 				1866C34422C1094800C519AD /* LeftMenu.swift in Sources */,
 				1858C57222DA748B00AE3AD2 /* PhotoLinks.swift in Sources */,
 				1866C34222C1094800C519AD /* MainView.swift in Sources */,
 				1858C57522DA748B00AE3AD2 /* Urls.swift in Sources */,
-				1811846722D87FCF0087C50A /* MenuView.swift in Sources */,
+				1811846722D87FCF0087C50A /* LeftMenuPanel.swift in Sources */,
 				189D934322DA296900AFD95F /* Constants.swift in Sources */,
 				1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */,
 				1858C57022DA748B00AE3AD2 /* Sponsorship.swift in Sources */,
+				1872424222E5BC19001708DB /* CenterView.swift in Sources */,
 				18570C5022DDAE160025E653 /* PopularPhotosView.swift in Sources */,
 				1866C34322C1094800C519AD /* RightMenu.swift in Sources */,
 				1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */,
@@ -556,7 +560,7 @@
 				minimumVersion = 0.4.0;
 			};
 		};
-		1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+		18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
 			requirement = {
@@ -572,9 +576,9 @@
 			package = 1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
-		1895D0A122E482DD009245EC /* ShimmerView */ = {
+		18D1EBED22E57AB700D88666 /* ShimmerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1895D0A022E482DD009245EC /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			package = 18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */;
 			productName = ShimmerView;
 		};
 /* End XCSwiftPackageProductDependency section */

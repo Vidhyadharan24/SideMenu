@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-internal struct RightMenu: View, MenuView {
+internal struct RightMenu: View {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
     

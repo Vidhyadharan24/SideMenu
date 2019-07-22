@@ -8,13 +8,7 @@
 
 import SwiftUI
 
-public protocol CenterView: View {
-    
-    init(leftMenuState: Binding<Bool>, rightMenuState: Binding<Bool>)
-    
-}
-
-internal struct CenterMenuView : View, CenterView {
+internal struct CenterView : View {
     @Binding var leftMenuState: Bool
     @Binding var rightMenuState: Bool
     
@@ -48,7 +42,7 @@ internal struct CenterMenuView : View, CenterView {
 #if DEBUG
 struct CenterView_Previews : PreviewProvider {
     static var previews: some View {
-        CenterMenuView(leftMenuState: .constant(false), rightMenuState: .constant(false))
+        CenterView(leftMenuState: .constant(false), rightMenuState: .constant(false))
     }
 }
 #endif

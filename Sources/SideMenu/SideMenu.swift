@@ -12,7 +12,7 @@ public struct SideMenu : View {
     
     //  MARK: Custom initializers
     
-    public init<Menu: MenuView>(leftMenu: Menu, showLeftMenu: Binding<Bool>,
+    public init<Menu: View>(leftMenu: Menu, showLeftMenu: Binding<Bool>,
                                 centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
         self._showLeftMenu = showLeftMenu
         
@@ -25,7 +25,7 @@ public struct SideMenu : View {
         self.config = config
     }
     
-    public init<Menu: MenuView>(rightMenu: Menu, showRightMenu: Binding<Bool>,
+    public init<Menu: View>(rightMenu: Menu, showRightMenu: Binding<Bool>,
                                 centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
         self._showLeftMenu = .constant(false)
         self._showRightMenu = showRightMenu
@@ -37,7 +37,7 @@ public struct SideMenu : View {
         self.config = config
     }
     
-    public init<LMenu: MenuView, RMenu: MenuView>(leftMenu: LMenu, showLeftMenu: Binding<Bool>,
+    public init<LMenu: View, RMenu: View>(leftMenu: LMenu, showLeftMenu: Binding<Bool>,
                                                   rightMenu: RMenu, showRightMenu: Binding<Bool>,
                                                   centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
         self._showLeftMenu = showLeftMenu
@@ -260,19 +260,19 @@ struct ContentView_Previews : PreviewProvider {
         return Group {
             SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, centerView: $centerView).onAppear {
                 withAnimation {
-                    self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu))
+                    self.centerView = AnyView(CenterView(leftMenuState: self.$showLeftMenu))
                 }
             }
             
             SideMenu(rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
                 withAnimation {
-                    self.centerView = AnyView(CenterMenuView(rightMenuState: self.$showRightMenu))
+                    self.centerView = AnyView(CenterView(rightMenuState: self.$showRightMenu))
                 }
             }
             
             SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
                 withAnimation {
-                    self.centerView = AnyView(CenterMenuView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
+                    self.centerView = AnyView(CenterView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
                 }
             }
         }

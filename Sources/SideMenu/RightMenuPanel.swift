@@ -1,14 +1,14 @@
 //
-//  LeftMenu.swift
-//  SideMenu-Example
+//  RightMenuPanel.swift
+//  SideMenu
 //
-//  Created by Vidhyadharan Mohanram on 23/06/19.
+//  Created by Vidhyadharan Mohanram on 22/07/19.
 //  Copyright © 2019 Vid. All rights reserved.
 //
 
 import SwiftUI
 
-internal struct LeftMenu: View {
+internal struct RightMenuPanel: View {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
     
@@ -19,21 +19,20 @@ internal struct LeftMenu: View {
             VStack(spacing: 10) {
                 Spacer()
                 Text("Hello World!")
-                    .foregroundColor(Color.black)
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(PopularPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
-                        self.showLeftMenu.toggle()
+                        self.centerView = AnyView(CenterView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
+                        self.showRightMenu.toggle()
                     }
                 }, label: {
-                    Text("Show Popular Photos")
+                    Text("Update center view")
                         .foregroundColor(.black)
                 })
                 Spacer()
             }
         }
-        .background(Color.blue)
-        .background(Rectangle().shadow(radius: 4))
+        .background(Color.red)
+            .background(Rectangle().shadow(radius: 4))
     }
     
     init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
@@ -45,13 +44,11 @@ internal struct LeftMenu: View {
 }
 
 #if DEBUG
-struct LeftMenu_Previews : PreviewProvider {
+struct MenuView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
-                .previewDevice("iPhone Xs")
-                .environment(\.colorScheme, .dark)
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            LeftMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            RightMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
         }
     }
 }
