@@ -18,7 +18,7 @@ public struct SideMenuConfig {
     
     public var disableDragGesture: Bool
     
-    public init(menuBGColor: Color = .red, menuBGOpacity: Double = 0.3,
+    public init(menuBGColor: Color = .black, menuBGOpacity: Double = 0.3,
                 menuWidth: Length = 300, animationDuration: Double = 0.3,
                 disableDragGesture: Bool = false) {
         self.menuBGColor = menuBGColor

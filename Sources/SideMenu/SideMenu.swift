@@ -79,7 +79,8 @@ public struct SideMenu : View {
                 
                 if self.showLeftMenu && self.leftMenu != nil {
                     MenuBackgroundView(showLeftMenu: self._showLeftMenu,
-                                       showRightMenu: self._showRightMenu)
+                                       showRightMenu: self._showRightMenu,
+                                       bgColor: self.config.menuBGColor)
                         .frame(width: geometry.actualScreenSize.width,
                                height: geometry.actualScreenSize.height)
                         .opacity(self.leftMenuBGOpacity)
@@ -96,7 +97,8 @@ public struct SideMenu : View {
                 
                 if self.showRightMenu && self.rightMenu != nil {
                     MenuBackgroundView(showLeftMenu: self._showLeftMenu,
-                                       showRightMenu: self._showRightMenu)
+                                       showRightMenu: self._showRightMenu,
+                                       bgColor: self.config.menuBGColor)
                         .frame(width: geometry.actualScreenSize.width,
                                height: geometry.actualScreenSize.height)
                         .opacity(self.rightMenuBGOpacity)
@@ -227,9 +229,11 @@ struct MenuBackgroundView : View {
     @Binding var showLeftMenu: Bool
     @Binding var showRightMenu: Bool
     
+    let bgColor: Color
+    
     var body: some View {
         Rectangle()
-            .background(Color.black)
+            .background(bgColor)
             .transition(.opacity)
             .tapAction {
                 withAnimation {

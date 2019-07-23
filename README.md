@@ -1,13 +1,35 @@
-//
-//  MainView.swift
-//  SideMenu
-//
-//  Created by Vidhyadharan Mohanram on 18/06/19.
-//  Copyright © 2019 Vid. All rights reserved.
-//
+# SideMenu
 
-import SwiftUI
-import ShimmerView
+## Overview
+
+SideMenu is a simple side menu Navigation control written in SwiftUI for SwiftUI
+
+### Preview Samples
+| Left Panel | Right Panel |
+| --- | --- |
+| ![](https://raw.githubusercontent.com/Vidhyadharan-Mohanram/SideMenu/master/etc/LeftPanel.gif) | ![](https://raw.githubusercontent.com/Vidhyadharan-Mohanram/SideMenu/master/etc/RightPanel.gif) |
+
+## Requirements
+- [x] Xcode 11
+- [x] Swift 5.1
+- [x] iOS 13 or higher.
+
+## Installation
+### Swift Package Manager
+
+Select the project in Navigator, go to the Swift Packages tab and that the url 
+
+```
+https://github.com/Vidhyadharan-Mohanram/SideMenu
+```
+
+## Usage
+### Initialization
+
+Side Menu takes two boolean bindings, two panel views and a view binding for the center view as parameters, depending on the requirment of the project a 
+
+``` swift
+import SideMenu 
 
 struct MainView : View {
     
@@ -25,7 +47,6 @@ struct MainView : View {
         return SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu,
                         rightMenu: rightMenu, showRightMenu: $showRightMenu,
                         centerView: $centerView)
-            .environmentObject(ShimmerConfig())
             .onAppear {
                 withAnimation {
                     self.centerView = AnyView(LatestPhotosView(leftMenuState: self.$showLeftMenu,
@@ -35,11 +56,11 @@ struct MainView : View {
     }
     
 }
+```
 
-#if DEBUG
-struct MainView_Previews : PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
-#endif
+
+
+### Customization
+#### SideMenuConfig
+
+## Known Issues
