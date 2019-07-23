@@ -72,10 +72,10 @@ struct MainView : View {
 `SideMenuConfig` supports the following customizations
 
 ```swift
-	// color of the background view. Default is Color.black
-	public var menuBGColor: Color
+    // color of the background view. Default is Color.black
+    public var menuBGColor: Color
 	
-	// The opacity of the menu background view. Default is 0.3
+    // The opacity of the menu background view. Default is 0.3
     public var menuBGOpacity: Double
     
     // The width of the menu. Default is 300
