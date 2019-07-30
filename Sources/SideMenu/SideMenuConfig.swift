@@ -12,14 +12,14 @@ public struct SideMenuConfig {
     public var menuBGColor: Color
     public var menuBGOpacity: Double
     
-    public var menuWidth: Length
+    public var menuWidth: CGFloat
     
     public var animationDuration: Double
     
     public var disableDragGesture: Bool
     
     public init(menuBGColor: Color = .black, menuBGOpacity: Double = 0.3,
-                menuWidth: Length = 300, animationDuration: Double = 0.3,
+                menuWidth: CGFloat = 300, animationDuration: Double = 0.3,
                 disableDragGesture: Bool = false) {
         self.menuBGColor = menuBGColor
         self.menuBGOpacity = menuBGOpacity

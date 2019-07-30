@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-class PhotoLoaderViewModel: BindableObject {
+class PhotoLoaderViewModel: ObservableObject {
     typealias ViewModelSubject = PassthroughSubject<PhotoLoaderViewModel, Never>
     
     private lazy var imageLoader = ImageLoader()

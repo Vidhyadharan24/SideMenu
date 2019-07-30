@@ -13,7 +13,7 @@ struct LatestPhotosView: View {
     @Binding var leftMenuState: Bool
     @Binding var rightMenuState: Bool
     
-    @ObjectBinding var viewModel = PhotosViewModel()
+    @ObservedObject var viewModel = PhotosViewModel()
     
     var body: some View {
         NavigationView {
@@ -50,7 +50,7 @@ struct LatestPhotosView: View {
         switch viewModel.state {
         case .loading:
             view = AnyView(List {
-                ForEach(1...3) { row in
+                ForEach(1..<4) { _ in
                     ListPhotoRow(shouldShimmer: true)
                 }
             })

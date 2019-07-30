@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-class PhotosViewModel: BindableObject {
+class PhotosViewModel: ObservableObject {
     typealias ViewModelSubject = PassthroughSubject<PhotosViewModel, Never>
     
     // MARK: - Properties

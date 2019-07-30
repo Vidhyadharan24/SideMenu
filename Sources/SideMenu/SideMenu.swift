@@ -123,7 +123,7 @@ public struct SideMenu : View {
         }
     }
     
-    private func panelDragGesture(_ screenWidth: Length) -> _EndedGesture<_ChangedGesture<DragGesture>> {
+    private func panelDragGesture(_ screenWidth: CGFloat) -> _EndedGesture<_ChangedGesture<DragGesture>> {
         return DragGesture()
             .onChanged { (value) in
                 self.onChangedDragGesture(value: value, screenWidth: screenWidth)
@@ -132,13 +132,13 @@ public struct SideMenu : View {
         }
     }
     
-    private func menuXOffset(_ screenWidth: Length) -> Length {
+    private func menuXOffset(_ screenWidth: CGFloat) -> CGFloat {
         return (screenWidth - (self.config.menuWidth))/2
     }
     
     //  MARK: Drag gesture methods
     
-    func onChangedDragGesture(value: DragGesture.Value, screenWidth: Length) {
+    func onChangedDragGesture(value: DragGesture.Value, screenWidth: CGFloat) {
         guard !self.config.disableDragGesture else { return }
         
         let startLocX = value.startLocation.x
@@ -195,7 +195,7 @@ public struct SideMenu : View {
         }
     }
     
-    func onEndedDragGesture(value: DragGesture.Value, screenWidth: Length) {
+    func onEndedDragGesture(value: DragGesture.Value, screenWidth: CGFloat) {
         guard !self.config.disableDragGesture else { return }
         
         let midXPoint = (0.5 * self.config.menuWidth)
@@ -235,7 +235,7 @@ struct MenuBackgroundView : View {
         Rectangle()
             .background(bgColor)
             .transition(.opacity)
-            .tapAction {
+            .onTapGesture {
                 withAnimation {
                     if self.showLeftMenu {
                         self.showLeftMenu.toggle()

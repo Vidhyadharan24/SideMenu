@@ -11,7 +11,7 @@ import ShimmerView
 
 struct NetworkImageView: View {
     
-    @ObjectBinding var photoLoaderViewModel: PhotoLoaderViewModel
+    @ObservedObject var photoLoaderViewModel: PhotoLoaderViewModel
     
     let urlString: String?
     let shouldShimmer: Bool
