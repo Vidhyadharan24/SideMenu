@@ -16,16 +16,9 @@ class PhotosViewModel: ObservableObject {
     
     private lazy var apiService = APIService<[Photo]>()
     
-    // MARK: - Binding
-    
-    internal let willChange = ViewModelSubject()
     private var cancellables = [AnyCancellable]()
     
-    var state: ViewState<[Photo]> = .completedWithNoData {
-        willSet {
-            willChange.send(self)
-        }
-    }
+    @Published var state: ViewState<[Photo]> = .completedWithNoData
     
     deinit {
         _ = self.cancellables.map { $0.cancel() }
