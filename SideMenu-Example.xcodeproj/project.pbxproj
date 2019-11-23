@@ -44,7 +44,7 @@
 		189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934022DA237A00AFD95F /* PhotosEndPoint.swift */; };
 		189D934322DA296900AFD95F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934222DA296900AFD95F /* Constants.swift */; };
 		18A6D5C022D82EA0006A3674 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D5BF22D82EA0006A3674 /* PhotosViewModel.swift */; };
-		18D1EBEE22E57AB700D88666 /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 18D1EBED22E57AB700D88666 /* ShimmerView */; };
+		18AF5C0423293EE100A6AC8E /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 18AF5C0323293EE100A6AC8E /* ShimmerView */; };
 		18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D883CA22DB2A6E00286F39 /* PhotoLoaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1858C57D22DA7F3300AE3AD2 /* SFSafeSymbols in Frameworks */,
-				18D1EBEE22E57AB700D88666 /* ShimmerView in Frameworks */,
+				18AF5C0423293EE100A6AC8E /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +262,7 @@
 			name = "SideMenu-Example";
 			packageProductDependencies = (
 				1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */,
-				18D1EBED22E57AB700D88666 /* ShimmerView */,
+				18AF5C0323293EE100A6AC8E /* ShimmerView */,
 			);
 			productName = "SideMenu-Example";
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
@@ -294,7 +294,7 @@
 			mainGroup = 1830FC7022BFA686005A52D7;
 			packageReferences = (
 				1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
-				18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */,
+				18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
@@ -560,7 +560,7 @@
 				minimumVersion = 0.4.0;
 			};
 		};
-		18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+		18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
 			requirement = {
@@ -576,9 +576,9 @@
 			package = 1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
-		18D1EBED22E57AB700D88666 /* ShimmerView */ = {
+		18AF5C0323293EE100A6AC8E /* ShimmerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D1EBEC22E57AB700D88666 /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			package = 18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */;
 			productName = ShimmerView;
 		};
 /* End XCSwiftPackageProductDependency section */
