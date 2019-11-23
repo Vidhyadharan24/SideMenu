@@ -6,7 +6,6 @@
 //  Copyright © 2019 Vid. All rights reserved.
 //
 
-
 import SwiftUI
 
 internal struct LeftMenuPanel: View {

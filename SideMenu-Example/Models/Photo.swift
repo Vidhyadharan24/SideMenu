@@ -14,12 +14,9 @@ struct Photo: Codable, Identifiable {
     let photoDescription, altDescription: String?
     let urls: Urls
     let links: PhotoLinks
-    let categories: [JSONAny]
     let likes: Int
     let likedByUser: Bool
-    let currentUserCollections: [JSONAny]
     let user: User
-    let sponsorship: Sponsorship?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,9 +25,8 @@ struct Photo: Codable, Identifiable {
         case width, height, color
         case photoDescription = "description"
         case altDescription = "alt_description"
-        case urls, links, categories, likes
+        case urls, links, likes
         case likedByUser = "liked_by_user"
-        case currentUserCollections = "current_user_collections"
-        case user, sponsorship
+        case user
     }
 }

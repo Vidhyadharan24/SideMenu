@@ -14,7 +14,7 @@ internal struct CenterView : View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 10) {                
+            VStack(spacing: 10) {
                 Button(action: {
                     withAnimation {
                         self.leftMenuState.toggle()

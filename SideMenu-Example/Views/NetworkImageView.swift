@@ -58,4 +58,3 @@ struct NetworkImageView: View {
             .shimmer(isActive: shouldShimmer || shouldShowShimmer))
     }
 }
-

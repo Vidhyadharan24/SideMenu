@@ -63,9 +63,13 @@ public struct SideMenu : View {
     @State private var leftMenuBGOpacity: Double = 0
     @State private var rightMenuBGOpacity: Double = 0
     
-    @State private var leftMenuOffsetX: CGFloat = 0
+    @State private var leftMenuOffsetX: CGFloat = 0 {
+        didSet {
+            print(leftMenuOffsetX)
+        }
+    }
     @State private var rightMenuOffsetX: CGFloat = 0
-    
+
     private var menuAnimation: Animation {
         .easeOut(duration: self.config.animationDuration)
     }
@@ -81,15 +85,15 @@ public struct SideMenu : View {
                     MenuBackgroundView(showLeftMenu: self._showLeftMenu,
                                        showRightMenu: self._showRightMenu,
                                        bgColor: self.config.menuBGColor)
-                        .frame(width: geometry.actualScreenSize.width,
-                               height: geometry.actualScreenSize.height)
+                        .frame(width: geometry.size.width,
+                               height: geometry.size.height)
                         .opacity(self.leftMenuBGOpacity)
                         .zIndex(1)
                     
                     self.leftMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
                         .frame(width: self.config.menuWidth,
-                               height: geometry.actualScreenSize.height)
+                               height: geometry.size.height)
                         .offset(x: self.leftMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.leading))
                         .zIndex(2)
@@ -99,27 +103,31 @@ public struct SideMenu : View {
                     MenuBackgroundView(showLeftMenu: self._showLeftMenu,
                                        showRightMenu: self._showRightMenu,
                                        bgColor: self.config.menuBGColor)
-                        .frame(width: geometry.actualScreenSize.width,
-                               height: geometry.actualScreenSize.height)
+                        .frame(width: geometry.size.width,
+                               height: geometry.size.height)
                         .opacity(self.rightMenuBGOpacity)
                         .zIndex(3)
                     
                     self.rightMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
                         .frame(width: self.config.menuWidth,
-                               height: geometry.actualScreenSize.height)
+                               height: geometry.size.height)
                         .offset(x: self.rightMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.trailing))
                         .zIndex(4)
                 }
-            }.gesture(self.panelDragGesture(geometry.actualScreenSize.width))
+            }.gesture(self.panelDragGesture(geometry.size.width))
                 .animation(self.menuAnimation)
                 .onAppear {
-                    self.leftMenuOffsetX = -self.menuXOffset(geometry.actualScreenSize.width)
-                    self.rightMenuOffsetX = self.menuXOffset(geometry.actualScreenSize.width)
+                    self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
+                    self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
                     self.leftMenuBGOpacity = self.config.menuBGOpacity
                     self.rightMenuBGOpacity = self.config.menuBGOpacity
-            }
+                    NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main) { _ in
+                        self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
+                        self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
+                    }
+            }.environment(\.horizontalSizeClass, .compact)
         }
     }
     

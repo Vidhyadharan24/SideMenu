@@ -32,7 +32,10 @@ class APIService<T> where T: Decodable {
             .map { $0.data } // 2. we retrieve `data` from the Publisher's `Output` tuple
             .mapError(NetworkError.mappedFromRawError) // 3. catch and map error that the dataTask `Publisher` emits
             .decode(type: T.self, decoder: decoder) // 4. Decode #3 data into array of `Photo` model
-            .mapError(NetworkError.jsonDecoderError) // 5. catch and map error from JSONDecoder
+            .mapError({ (error) -> NetworkError in
+                print("decoder error \(error)")
+                return NetworkError.jsonDecoderError(error)
+            }) // 5. catch and map error from JSONDecoder
             .subscribe(on: self.backgroundQueue) // process on background/private queue
             .receive(on: DispatchQueue.main) // send result on main queue
             .eraseToAnyPublisher() // IMPORTANT: use AnyPublisher to hide implementation details to outside, hence "type-erased"
