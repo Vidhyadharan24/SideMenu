@@ -9,22 +9,22 @@
 import SwiftUI
 
 internal struct CenterView : View {
-    @Binding var leftMenuState: Bool
-    @Binding var rightMenuState: Bool
-    
+    @Environment(\.sideMenuLeftPanelKey) var sideMenuLeftPanel
+    @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
+
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
                 Button(action: {
                     withAnimation {
-                        self.leftMenuState.toggle()
+                        self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
                     }
                 }, label: {
                     Text("Show left menu") })
                 
                 Button(action: {
                     withAnimation {
-                        self.rightMenuState.toggle()
+                        self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
                     }
                 }, label: {
                     Text("Show right menu") })
@@ -32,17 +32,12 @@ internal struct CenterView : View {
             .navigationBarTitle(Text("Center View"))
         }
     }
-    
-    init(leftMenuState: Binding<Bool> = .constant(false), rightMenuState: Binding<Bool> = .constant(false)) {
-        self._leftMenuState = leftMenuState
-        self._rightMenuState = rightMenuState
-    }
 }
 
 #if DEBUG
 struct CenterView_Previews : PreviewProvider {
     static var previews: some View {
-        CenterView(leftMenuState: .constant(false), rightMenuState: .constant(false))
+        CenterView()
     }
 }
 #endif

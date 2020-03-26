@@ -10,8 +10,8 @@ import SwiftUI
 import SFSafeSymbols
 
 struct OldestPhotosView: View {
-    @Binding var leftMenuState: Bool
-    @Binding var rightMenuState: Bool
+    @Environment(\.sideMenuLeftPanelKey) var sideMenuLeftPanel
+    @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
     
     @ObservedObject var viewModel = PhotosViewModel()
     
@@ -24,7 +24,7 @@ struct OldestPhotosView: View {
             .navigationBarItems(
                 leading: Button(action: {
                     withAnimation {
-                        self.leftMenuState.toggle()
+                        self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
                     }
                 }, label: {
                     Image(systemName: SFSymbol.lineHorizontal3.rawValue)
@@ -33,7 +33,7 @@ struct OldestPhotosView: View {
                 }),
                 trailing: Button(action: {
                     withAnimation {
-                        self.rightMenuState.toggle()
+                        self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
                     }
                 }, label: {
                     Image(systemName: SFSymbol.lineHorizontal3.rawValue)
@@ -42,6 +42,8 @@ struct OldestPhotosView: View {
 
                 })
             )
+        }.onAppear {
+            self.fetchData()
         }
     }
     
@@ -74,18 +76,12 @@ struct OldestPhotosView: View {
     private func fetchData() {
         self.viewModel.fetchPhotos(orderBy: .oldest)
     }
-    
-    init(leftMenuState: Binding<Bool> = .constant(false), rightMenuState: Binding<Bool> = .constant(false)) {
-        self._leftMenuState = leftMenuState
-        self._rightMenuState = rightMenuState
-        fetchData()
-    }
 }
 
 #if DEBUG
 struct OldestPhotosView_Previews : PreviewProvider {
     static var previews: some View {
-        OldestPhotosView(leftMenuState: .constant(false), rightMenuState: .constant(false))
+        OldestPhotosView()
     }
 }
 #endif

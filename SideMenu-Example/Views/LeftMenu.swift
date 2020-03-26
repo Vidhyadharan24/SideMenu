@@ -9,24 +9,43 @@
 import SwiftUI
 
 internal struct LeftMenu: View {
-    @Binding var showLeftMenu: Bool
-    @Binding var showRightMenu: Bool
-    
-    @Binding var centerView: AnyView?
-    
+    @Environment(\.sideMenuGestureModeKey) var sideMenuGestureMode
+    @Environment(\.sideMenuLeftPanelKey) var sideMenuLeftPanel
+    @Environment(\.sideMenuCenterViewKey) var sideMenuCenterView
+
     var body: some View {
-        GeometryReader { geometry in
+        let text: String;
+        
+        if self.sideMenuGestureMode.wrappedValue == SideMenuGestureMode.inactive {
+            text = "Panel gesture is inactive"
+        } else {
+            text = "Panel gesture is active"
+        }
+        
+        return GeometryReader { geometry in
             VStack(spacing: 10) {
                 Spacer()
                 Text("Hello World!")
                     .foregroundColor(Color.black)
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(PopularPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
-                        self.showLeftMenu.toggle()
+                        self.sideMenuCenterView.wrappedValue = AnyView(PopularPhotosView())
+                        self.sideMenuLeftPanel.wrappedValue = false
                     }
                 }, label: {
                     Text("Show Popular Photos")
+                        .foregroundColor(.black)
+                })
+                Button(action: {
+                    withAnimation {
+                        if self.sideMenuGestureMode.wrappedValue == SideMenuGestureMode.inactive {
+                            self.sideMenuGestureMode.wrappedValue = SideMenuGestureMode.active
+                        } else {
+                            self.sideMenuGestureMode.wrappedValue = SideMenuGestureMode.inactive
+                        }
+                    }
+                }, label: {
+                    Text(text)
                         .foregroundColor(.black)
                 })
                 Spacer()
@@ -35,23 +54,16 @@ internal struct LeftMenu: View {
         .background(Color.blue)
         .background(Rectangle().shadow(radius: 4))
     }
-    
-    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
-        self._showLeftMenu = showLeftMenu
-        self._showRightMenu = showRightMenu
-        
-        self._centerView = centerView
-    }
 }
 
 #if DEBUG
 struct LeftMenu_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            LeftMenu()
                 .previewDevice("iPhone Xs")
                 .environment(\.colorScheme, .dark)
-            LeftMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            LeftMenu()
         }
     }
 }

@@ -9,10 +9,8 @@
 import SwiftUI
 
 internal struct RightMenu: View {
-    @Binding var showLeftMenu: Bool
-    @Binding var showRightMenu: Bool
-    
-    @Binding var centerView: AnyView?
+    @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
+    @Environment(\.sideMenuCenterViewKey) var sideMenuCenterView
     
     var body: some View {
         GeometryReader { geometry in
@@ -22,8 +20,8 @@ internal struct RightMenu: View {
                     .foregroundColor(Color.black)
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(OldestPhotosView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
-                        self.showRightMenu.toggle()
+                        self.sideMenuCenterView.wrappedValue = AnyView(OldestPhotosView())
+                        self.sideMenuRightPanel.wrappedValue = false
                     }
                 }, label: {
                     Text("Show Old Photos")
@@ -35,19 +33,12 @@ internal struct RightMenu: View {
         .background(Color.red)
         .background(Rectangle().shadow(radius: 4))
     }
-    
-    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
-        self._showLeftMenu = showLeftMenu
-        self._showRightMenu = showRightMenu
-        
-        self._centerView = centerView
-    }
 }
 
 #if DEBUG
 struct RightMenu_Previews : PreviewProvider {
     static var previews: some View {
-        RightMenu(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+        RightMenu()
     }
 }
 #endif

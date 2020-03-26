@@ -9,11 +9,9 @@
 import SwiftUI
 
 internal struct LeftMenuPanel: View {
-    @Binding var showLeftMenu: Bool
-    @Binding var showRightMenu: Bool
-    
-    @Binding var centerView: AnyView?
-    
+    @Environment(\.sideMenuLeftPanelKey) var sideMenuLeftPanel
+    @Environment(\.sideMenuCenterViewKey) var sideMenuCenterView
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 10) {
@@ -21,8 +19,8 @@ internal struct LeftMenuPanel: View {
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(CenterView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
-                        self.showLeftMenu.toggle()
+                        self.sideMenuCenterView.wrappedValue = AnyView(CenterView())
+                        self.sideMenuLeftPanel.wrappedValue = false
                     }
                 }, label: {
                     Text("Update center view")
@@ -33,12 +31,5 @@ internal struct LeftMenuPanel: View {
         }
         .background(Color.blue)
         .background(Rectangle().shadow(radius: 4))
-    }
-    
-    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
-        self._showLeftMenu = showLeftMenu
-        self._showRightMenu = showRightMenu
-
-        self._centerView = centerView
     }
 }

@@ -9,11 +9,9 @@
 import SwiftUI
 
 internal struct RightMenuPanel: View {
-    @Binding var showLeftMenu: Bool
-    @Binding var showRightMenu: Bool
-    
-    @Binding var centerView: AnyView?
-    
+    @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
+    @Environment(\.sideMenuCenterViewKey) var sideMenuCenterView
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 10) {
@@ -21,8 +19,8 @@ internal struct RightMenuPanel: View {
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
-                        self.centerView = AnyView(CenterView(leftMenuState: self._showLeftMenu, rightMenuState: self._showRightMenu))
-                        self.showRightMenu.toggle()
+                        self.sideMenuCenterView.wrappedValue = AnyView(CenterView())
+                        self.sideMenuRightPanel.wrappedValue = false
                     }
                 }, label: {
                     Text("Update center view")
@@ -34,21 +32,14 @@ internal struct RightMenuPanel: View {
         .background(Color.red)
             .background(Rectangle().shadow(radius: 4))
     }
-    
-    init(showLeftMenu: Binding<Bool> = .constant(false), showRightMenu: Binding<Bool> = .constant(false), centerView: Binding<AnyView?>) {
-        self._showLeftMenu = showLeftMenu
-        self._showRightMenu = showRightMenu
-        
-        self._centerView = centerView
-    }
 }
 
 #if DEBUG
 struct MenuView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            LeftMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
-            RightMenuPanel(showLeftMenu: .constant(false), showRightMenu: .constant(false), centerView: .constant(nil))
+            LeftMenuPanel()
+            RightMenuPanel()
         }
     }
 }

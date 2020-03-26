@@ -17,21 +17,15 @@ struct MainView : View {
     @State var showRightMenu: Bool = false
     
     var body: some View {
-        let leftMenu = LeftMenu(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu,
-                                centerView: $centerView)
-        let rightMenu = RightMenu(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu,
-                                  centerView: $centerView)
+        let leftMenu = LeftMenu()
+        let rightMenu = RightMenu()
         
-        return SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu,
-                        rightMenu: rightMenu, showRightMenu: $showRightMenu,
-                        centerView: $centerView)
+        let defaultView = AnyView(LatestPhotosView())
+        
+        return SideMenu(leftMenu: leftMenu,
+                        rightMenu: rightMenu,
+                        centerView: defaultView)
             .environmentObject(ShimmerConfig())
-            .onAppear {
-                withAnimation {
-                    self.centerView = AnyView(LatestPhotosView(leftMenuState: self.$showLeftMenu,
-                                                               rightMenuState: self.$showRightMenu))
-                }
-        }
     }
     
 }

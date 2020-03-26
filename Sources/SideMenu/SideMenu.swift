@@ -12,63 +12,48 @@ public struct SideMenu : View {
     
     //  MARK: Custom initializers
     
-    public init<Menu: View>(leftMenu: Menu, showLeftMenu: Binding<Bool>,
-                                centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
-        self._showLeftMenu = showLeftMenu
-        
-        self._showRightMenu = .constant(false)
-        
-        self._centerView = centerView
-        
+    public init<Menu: View>(leftMenu: Menu, centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
         self.leftMenu = AnyView(leftMenu)
         
         self.config = config
+        self._sideMenuCenterView = State(initialValue: centerView)
     }
     
-    public init<Menu: View>(rightMenu: Menu, showRightMenu: Binding<Bool>,
-                                centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
-        self._showLeftMenu = .constant(false)
-        self._showRightMenu = showRightMenu
-        
-        self._centerView = centerView
-        
+    public init<Menu: View>(rightMenu: Menu,
+                                centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
         self.rightMenu = AnyView(rightMenu)
         
         self.config = config
+        self._sideMenuCenterView = State(initialValue: centerView)
     }
     
-    public init<LMenu: View, RMenu: View>(leftMenu: LMenu, showLeftMenu: Binding<Bool>,
-                                                  rightMenu: RMenu, showRightMenu: Binding<Bool>,
-                                                  centerView: Binding<AnyView?>, config: SideMenuConfig = SideMenuConfig()) {
-        self._showLeftMenu = showLeftMenu
-        self._showRightMenu = showRightMenu
-        self._centerView = centerView
-        
+    public init<LMenu: View, RMenu: View>(leftMenu: LMenu,
+                                                  rightMenu: RMenu,
+                                                  centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
         self.leftMenu = AnyView(leftMenu)
         self.rightMenu = AnyView(rightMenu)
         
         self.config = config
+        self._sideMenuCenterView = State(initialValue: centerView)
     }
     
     private var leftMenu: AnyView? = nil
     private var rightMenu: AnyView? = nil
-    
-    @Binding private var showLeftMenu: Bool
-    @Binding private var showRightMenu: Bool
-    
-    @Binding private var centerView: AnyView?
-    
+        
     private var config: SideMenuConfig
     
     @State private var leftMenuBGOpacity: Double = 0
     @State private var rightMenuBGOpacity: Double = 0
     
-    @State private var leftMenuOffsetX: CGFloat = 0 {
-        didSet {
-            print(leftMenuOffsetX)
-        }
-    }
+    @State private var leftMenuOffsetX: CGFloat = 0
     @State private var rightMenuOffsetX: CGFloat = 0
+    
+    @Environment (\.editMode) var editMode;
+    
+    @State private var sideMenuGestureMode: SideMenuGestureMode = SideMenuGestureMode.active;
+    @State private var sideMenuLeftPanel: Bool = false;
+    @State private var sideMenuRightPanel: Bool = false;
+    @State private var sideMenuCenterView: AnyView;
 
     private var menuAnimation: Animation {
         .easeOut(duration: self.config.animationDuration)
@@ -77,13 +62,14 @@ public struct SideMenu : View {
     public var body: some View {
         return GeometryReader { geometry in
             ZStack(alignment: .top) {
-                self.centerView?
+                self.sideMenuCenterView
                     .opacity(1)
                     .transition(.opacity)
+                    .background(Color.red)
                 
-                if self.showLeftMenu && self.leftMenu != nil {
-                    MenuBackgroundView(showLeftMenu: self._showLeftMenu,
-                                       showRightMenu: self._showRightMenu,
+                if self.sideMenuLeftPanel && self.leftMenu != nil {
+                    MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
+                                       sideMenuRightPanel: self.$sideMenuRightPanel,
                                        bgColor: self.config.menuBGColor)
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
@@ -99,9 +85,9 @@ public struct SideMenu : View {
                         .zIndex(2)
                 }
                 
-                if self.showRightMenu && self.rightMenu != nil {
-                    MenuBackgroundView(showLeftMenu: self._showLeftMenu,
-                                       showRightMenu: self._showRightMenu,
+                if self.sideMenuRightPanel && self.rightMenu != nil {
+                    MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
+                                       sideMenuRightPanel: self.$sideMenuRightPanel,
                                        bgColor: self.config.menuBGColor)
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
@@ -127,11 +113,23 @@ public struct SideMenu : View {
                         self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
                         self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
                     }
-            }.environment(\.horizontalSizeClass, .compact)
+            }
+            .environment(\.sideMenuGestureModeKey, self.$sideMenuGestureMode)
+            .environment(\.sideMenuLeftPanelKey, self.$sideMenuLeftPanel)
+            .environment(\.sideMenuRightPanelKey, self.$sideMenuRightPanel)
+            .environment(\.sideMenuCenterViewKey, self.$sideMenuCenterView)
+            .environment(\.horizontalSizeClass, .compact)
         }
     }
     
-    private func panelDragGesture(_ screenWidth: CGFloat) -> _EndedGesture<_ChangedGesture<DragGesture>> {
+    private func panelDragGesture(_ screenWidth: CGFloat) -> _EndedGesture<_ChangedGesture<DragGesture>>? {
+        if let mode = self.editMode?.wrappedValue, mode != EditMode.inactive {
+            return nil
+        }
+        if self.sideMenuGestureMode == SideMenuGestureMode.inactive {
+            return nil
+        }
+        
         return DragGesture()
             .onChanged { (value) in
                 self.onChangedDragGesture(value: value, screenWidth: screenWidth)
@@ -147,8 +145,6 @@ public struct SideMenu : View {
     //  MARK: Drag gesture methods
     
     func onChangedDragGesture(value: DragGesture.Value, screenWidth: CGFloat) {
-        guard !self.config.disableDragGesture else { return }
-        
         let startLocX = value.startLocation.x
         let translation = value.translation
         
@@ -159,14 +155,14 @@ public struct SideMenu : View {
         
         guard translationWidth <= self.config.menuWidth else { return }
         
-        if self.showLeftMenu, value.dragDirection == .left, self.leftMenu != nil {
+        if self.sideMenuLeftPanel, value.dragDirection == .left, self.leftMenu != nil {
             let newXOffset = -self.menuXOffset(screenWidth) - translationWidth
             self.leftMenuOffsetX = newXOffset
             
             let translationPercentage = (self.config.menuWidth - translationWidth) / self.config.menuWidth
             guard translationPercentage > 0 else { return }
             self.leftMenuBGOpacity = self.config.menuBGOpacity * Double(translationPercentage)
-        } else if self.showRightMenu, value.dragDirection == .right, self.rightMenu != nil {
+        } else if self.sideMenuRightPanel, value.dragDirection == .right, self.rightMenu != nil {
             let newXOffset = self.menuXOffset(screenWidth) + translationWidth
             self.rightMenuOffsetX = newXOffset
             
@@ -174,8 +170,8 @@ public struct SideMenu : View {
             guard translationPercentage > 0 else { return }
             self.rightMenuBGOpacity = self.config.menuBGOpacity * Double(translationPercentage)
         } else if startLocX < leftMenuGesturePositionX, value.dragDirection == .right, self.leftMenu != nil {
-            if !self.showLeftMenu {
-                self.showLeftMenu.toggle()
+            if !self.sideMenuLeftPanel {
+                self.sideMenuLeftPanel.toggle()
             }
             
             let defaultOffset = -(self.menuXOffset(screenWidth) + self.config.menuWidth)
@@ -188,8 +184,8 @@ public struct SideMenu : View {
             guard translationPercentage > 0 else { return }
             self.leftMenuBGOpacity = self.config.menuBGOpacity * Double(translationPercentage)
         } else if startLocX > rightMenuGesturePositionX, value.dragDirection == .left, self.rightMenu != nil {
-            if !self.showRightMenu {
-                self.showRightMenu.toggle()
+            if !self.sideMenuRightPanel {
+                self.sideMenuRightPanel.toggle()
             }
             
             let defaultOffset = self.menuXOffset(screenWidth) + self.config.menuWidth
@@ -203,25 +199,23 @@ public struct SideMenu : View {
         }
     }
     
-    func onEndedDragGesture(value: DragGesture.Value, screenWidth: CGFloat) {
-        guard !self.config.disableDragGesture else { return }
-        
+    func onEndedDragGesture(value: DragGesture.Value, screenWidth: CGFloat) {        
         let midXPoint = (0.5 * self.config.menuWidth)
         
-        if self.showRightMenu, self.rightMenu != nil {
+        if self.sideMenuRightPanel, self.rightMenu != nil {
             let rightMenuMidX = self.menuXOffset(screenWidth) + midXPoint
             
             if self.rightMenuOffsetX > rightMenuMidX {
-                self.showRightMenu.toggle()
+                self.sideMenuRightPanel.toggle()
             }
             
             self.rightMenuOffsetX = self.menuXOffset(screenWidth)
             self.rightMenuBGOpacity = self.config.menuBGOpacity
-        } else if self.showLeftMenu, self.leftMenu != nil {
+        } else if self.sideMenuLeftPanel, self.leftMenu != nil {
             let leftMenuMidX = -self.menuXOffset(screenWidth) - midXPoint
             
             if self.leftMenuOffsetX < leftMenuMidX {
-                self.showLeftMenu.toggle()
+                self.sideMenuLeftPanel.toggle()
             }
             
             self.leftMenuOffsetX = -self.menuXOffset(screenWidth)
@@ -234,8 +228,8 @@ public struct SideMenu : View {
 //  MARK: Menu background view
 
 struct MenuBackgroundView : View {
-    @Binding var showLeftMenu: Bool
-    @Binding var showRightMenu: Bool
+    @Binding var sideMenuLeftPanel: Bool
+    @Binding var sideMenuRightPanel: Bool
     
     let bgColor: Color
     
@@ -245,12 +239,12 @@ struct MenuBackgroundView : View {
             .transition(.opacity)
             .onTapGesture {
                 withAnimation {
-                    if self.showLeftMenu {
-                        self.showLeftMenu.toggle()
+                    if self.sideMenuLeftPanel {
+                        self.sideMenuLeftPanel.toggle()
                     }
                     
-                    if self.showRightMenu {
-                        self.showRightMenu.toggle()
+                    if self.sideMenuRightPanel {
+                        self.sideMenuRightPanel.toggle()
                     }
                 }
         }
@@ -258,35 +252,83 @@ struct MenuBackgroundView : View {
     }
 }
 
+enum SideMenuGestureMode {
+    case active
+    case inactive
+}
+
+struct SideMenuGestureModeKey: EnvironmentKey {
+    static let defaultValue: Binding<SideMenuGestureMode> = Binding.constant(SideMenuGestureMode.active)
+}
+
+extension EnvironmentValues {
+    var sideMenuGestureModeKey: Binding<SideMenuGestureMode> {
+        get {
+            return self[SideMenuGestureModeKey.self]
+        }
+        set {
+            self[SideMenuGestureModeKey.self] = newValue
+        }
+    }
+}
+
+struct SideMenuLeftPanelKey: EnvironmentKey {
+    static let defaultValue: Binding<Bool> = Binding.constant(false)
+}
+
+extension EnvironmentValues {
+    var sideMenuLeftPanelKey: Binding<Bool> {
+        get {
+            return self[SideMenuLeftPanelKey.self]
+        }
+        set {
+            self[SideMenuLeftPanelKey.self] = newValue
+        }
+    }
+}
+
+struct SideMenuRightPanelKey: EnvironmentKey {
+    static let defaultValue: Binding<Bool> = Binding.constant(false)
+}
+
+extension EnvironmentValues {
+    var sideMenuRightPanelKey: Binding<Bool> {
+        get {
+            return self[SideMenuRightPanelKey.self]
+        }
+        set {
+            self[SideMenuRightPanelKey.self] = newValue
+        }
+    }
+}
+
+struct SideMenuCenterViewKey: EnvironmentKey {
+    static let defaultValue: Binding<AnyView> = Binding.constant(AnyView(EmptyView()))
+}
+
+extension EnvironmentValues {
+    var sideMenuCenterViewKey: Binding<AnyView> {
+        get {
+            return self[SideMenuCenterViewKey.self]
+        }
+        set {
+            self[SideMenuCenterViewKey.self] = newValue
+        }
+    }
+}
+
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
-    @State static var centerView: AnyView? = nil
-    
-    @State static var showLeftMenu: Bool = false
-    @State static var showRightMenu: Bool = false
-    
     static var previews: some View {
-        let leftMenu = LeftMenuPanel(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
-        let rightMenu = RightMenuPanel(showLeftMenu: $showLeftMenu, showRightMenu: $showRightMenu, centerView: $centerView)
+        let leftMenu = LeftMenuPanel()
+        let rightMenu = RightMenuPanel()
         
         return Group {
-            SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, centerView: $centerView).onAppear {
-                withAnimation {
-                    self.centerView = AnyView(CenterView(leftMenuState: self.$showLeftMenu))
-                }
-            }
+            SideMenu(leftMenu: leftMenu, centerView: AnyView(CenterView()))
             
-            SideMenu(rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
-                withAnimation {
-                    self.centerView = AnyView(CenterView(rightMenuState: self.$showRightMenu))
-                }
-            }
+            SideMenu(rightMenu: rightMenu, centerView: AnyView(CenterView()))
             
-            SideMenu(leftMenu: leftMenu, showLeftMenu: $showLeftMenu, rightMenu: rightMenu, showRightMenu: $showRightMenu, centerView: $centerView).onAppear {
-                withAnimation {
-                    self.centerView = AnyView(CenterView(leftMenuState: self.$showLeftMenu, rightMenuState: self.$showRightMenu))
-                }
-            }
+            SideMenu(leftMenu: leftMenu, rightMenu: rightMenu, centerView: AnyView(CenterView()))
         }
     }
 }
