@@ -12,29 +12,33 @@ public struct SideMenu : View {
     
     //  MARK: Custom initializers
     
-    public init<Menu: View>(leftMenu: Menu, centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
+    public init<Menu: View, CenterView: View>(leftMenu: Menu,
+                                              centerView: CenterView,
+                                              config: SideMenuConfig = SideMenuConfig()) {
         self.leftMenu = AnyView(leftMenu)
         
         self.config = config
-        self._sideMenuCenterView = State(initialValue: centerView)
+        self._sideMenuCenterView = State(initialValue: AnyView(centerView))
     }
     
-    public init<Menu: View>(rightMenu: Menu,
-                                centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
+    public init<Menu: View, CenterView: View>(rightMenu: Menu,
+                                              centerView: CenterView,
+                                              config: SideMenuConfig = SideMenuConfig()) {
         self.rightMenu = AnyView(rightMenu)
         
         self.config = config
-        self._sideMenuCenterView = State(initialValue: centerView)
+        self._sideMenuCenterView = State(initialValue: AnyView(centerView))
     }
     
-    public init<LMenu: View, RMenu: View>(leftMenu: LMenu,
-                                                  rightMenu: RMenu,
-                                                  centerView: AnyView, config: SideMenuConfig = SideMenuConfig()) {
+    public init<LMenu: View, RMenu: View, CenterView: View>(leftMenu: LMenu,
+                                                            rightMenu: RMenu,
+                                                            centerView: CenterView,
+                                                            config: SideMenuConfig = SideMenuConfig()) {
         self.leftMenu = AnyView(leftMenu)
         self.rightMenu = AnyView(rightMenu)
         
         self.config = config
-        self._sideMenuCenterView = State(initialValue: centerView)
+        self._sideMenuCenterView = State(initialValue: AnyView(centerView))
     }
     
     private var leftMenu: AnyView? = nil
@@ -252,7 +256,7 @@ struct MenuBackgroundView : View {
     }
 }
 
-enum SideMenuGestureMode {
+public enum SideMenuGestureMode {
     case active
     case inactive
 }
@@ -262,7 +266,7 @@ struct SideMenuGestureModeKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    var sideMenuGestureModeKey: Binding<SideMenuGestureMode> {
+    public var sideMenuGestureModeKey: Binding<SideMenuGestureMode> {
         get {
             return self[SideMenuGestureModeKey.self]
         }
@@ -277,7 +281,7 @@ struct SideMenuLeftPanelKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    var sideMenuLeftPanelKey: Binding<Bool> {
+    public var sideMenuLeftPanelKey: Binding<Bool> {
         get {
             return self[SideMenuLeftPanelKey.self]
         }
@@ -292,7 +296,7 @@ struct SideMenuRightPanelKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    var sideMenuRightPanelKey: Binding<Bool> {
+    public var sideMenuRightPanelKey: Binding<Bool> {
         get {
             return self[SideMenuRightPanelKey.self]
         }

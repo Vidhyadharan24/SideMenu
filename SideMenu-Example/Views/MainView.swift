@@ -10,24 +10,12 @@ import SwiftUI
 import ShimmerView
 
 struct MainView : View {
-    
-    @State var centerView: AnyView? = nil
-    
-    @State var showLeftMenu: Bool = false
-    @State var showRightMenu: Bool = false
-    
     var body: some View {
-        let leftMenu = LeftMenu()
-        let rightMenu = RightMenu()
-        
-        let defaultView = AnyView(LatestPhotosView())
-        
-        return SideMenu(leftMenu: leftMenu,
-                        rightMenu: rightMenu,
-                        centerView: defaultView)
+        SideMenu(leftMenu: LeftMenu(),
+                 rightMenu: RightMenu(),
+                 centerView: LatestPhotosView())
             .environmentObject(ShimmerConfig())
     }
-    
 }
 
 #if DEBUG
