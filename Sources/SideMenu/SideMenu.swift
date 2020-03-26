@@ -311,7 +311,7 @@ struct SideMenuCenterViewKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    var sideMenuCenterViewKey: Binding<AnyView> {
+    public var sideMenuCenterViewKey: Binding<AnyView> {
         get {
             return self[SideMenuCenterViewKey.self]
         }
