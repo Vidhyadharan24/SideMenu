@@ -17,9 +17,9 @@ internal struct LeftMenu: View {
         let text: String;
         
         if self.sideMenuGestureMode.wrappedValue == SideMenuGestureMode.inactive {
-            text = "Panel gesture is inactive"
+            text = "Enable panel gesture"
         } else {
-            text = "Panel gesture is active"
+            text = "Disable panel gesture"
         }
         
         return GeometryReader { geometry in
