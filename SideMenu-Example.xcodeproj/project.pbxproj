@@ -42,6 +42,7 @@
 		18A6D5C022D82EA0006A3674 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D5BF22D82EA0006A3674 /* PhotosViewModel.swift */; };
 		18AF5C0423293EE100A6AC8E /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 18AF5C0323293EE100A6AC8E /* ShimmerView */; };
 		18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D883CA22DB2A6E00286F39 /* PhotoLoaderViewModel.swift */; };
+		18F4C566243B054C00C5696C /* SideMenuEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4C565243B054C00C5696C /* SideMenuEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		189D934222DA296900AFD95F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18A6D5BF22D82EA0006A3674 /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		18D883CA22DB2A6E00286F39 /* PhotoLoaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLoaderViewModel.swift; sourceTree = "<group>"; };
+		18F4C565243B054C00C5696C /* SideMenuEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				1811846122D87FCF0087C50A /* LeftMenuPanel.swift */,
 				1872424322E5BCC6001708DB /* RightMenuPanel.swift */,
 				1811846022D87FCF0087C50A /* SideMenu.swift */,
+				18F4C565243B054C00C5696C /* SideMenuEnvironment.swift */,
 				1811845F22D87FCF0087C50A /* SideMenuConfig.swift */,
 				1811845C22D87FCF0087C50A /* Extensions */,
 			);
@@ -298,6 +301,7 @@
 				1858C57322DA748B00AE3AD2 /* User.swift in Sources */,
 				1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */,
 				1858C57F22DAFC1B00AE3AD2 /* ImageLoader.swift in Sources */,
+				18F4C566243B054C00C5696C /* SideMenuEnvironment.swift in Sources */,
 				189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */,
 				18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */,
 				1811846622D87FCF0087C50A /* SideMenu.swift in Sources */,
@@ -532,8 +536,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

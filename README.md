@@ -82,7 +82,7 @@ similary the panel gesture can be enabled or disabled using the environment key 
 
 ## Known Issues
 
-* Even though the performance of the left or right menu drag gesture has improved in beta 4, it's far from ideal. The performance of the drag gesture will improve with each new beta.
+* Shimmers when active causes the simulator and mac OS to stutter. Run the example app in device to prevent stuttering.
 
 ## ShimmerView
 For the shimmering effect go to `https://github.com/Vidhyadharan-Mohanram/ShimmerView` for more details.
