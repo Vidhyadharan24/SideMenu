@@ -1,6 +1,6 @@
 //
 //  SideMenuEnvironment.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 06/04/20.
 //  Copyright © 2020 Vid. All rights reserved.

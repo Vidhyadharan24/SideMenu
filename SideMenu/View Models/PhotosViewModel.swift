@@ -1,6 +1,6 @@
 //
 //  HomeViewModel.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vid on 12/07/19.
 //  Copyright © 2019 Vid. All rights reserved.
@@ -21,8 +21,7 @@ class PhotosViewModel: ObservableObject {
     @Published var state: ViewState<[Photo]> = .completedWithNoData
     
     deinit {
-        _ = self.cancellables.map { $0.cancel() }
-        self.cancellables.removeAll()
+        cancel()
     }
     
     // MARK: - Public
@@ -34,12 +33,12 @@ class PhotosViewModel: ObservableObject {
         let responsePublisher = self.apiService.fetchPhotosSignal(endPoint: photosEndPoint)
 
         let responseStream = responsePublisher
-          .sink(receiveCompletion: { [weak self] completion in
-            switch completion {
-            case .finished: break
-            case .failure(let error):
-                self?.state = .failed(error: error.message)
-            }
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self?.state = .failed(error: error.message)
+                }
             }, receiveValue: { [weak self] photos in
                 if photos.count > 0 {
                     self?.state = .completed(response: photos)
@@ -50,6 +49,13 @@ class PhotosViewModel: ObservableObject {
         
         // collect AnyCancellable subjects to discard later when `PhotosViewModel` life cycle ended
         self.cancellables += [responseStream]
+    }
+    
+    func cancel() {
+        self.cancellables.forEach { (cancellable) in
+            cancellable.cancel()
+        }
+        self.cancellables.removeAll()
     }
     
 }

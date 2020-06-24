@@ -1,6 +1,6 @@
 //
 //  NetworksImageView.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 14/07/19.
 //  Copyright © 2019 Vid. All rights reserved.
@@ -17,10 +17,7 @@ struct NetworkImageView: View {
     let shouldShimmer: Bool
     
     var body: some View {
-        GeometryReader { _ in
-            self.containedView()
-                .listRowInsets(EdgeInsets.init(top: 5, leading: 15, bottom: 5, trailing: 15))
-        }
+        self.containedView()
     }
     
     init(urlString: String?, shouldShimmer: Bool) {

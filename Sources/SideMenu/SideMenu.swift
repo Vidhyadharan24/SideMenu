@@ -65,11 +65,10 @@ public struct SideMenu : View {
     
     public var body: some View {
         return GeometryReader { geometry in
-            ZStack(alignment: .top) {
+            ZStack {
                 self.sideMenuCenterView
                     .opacity(1)
                     .transition(.opacity)
-                    .background(Color.red)
                 
                 if self.sideMenuLeftPanel && self.leftMenu != nil {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,

@@ -1,6 +1,6 @@
 //
 //  RightMenu.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 23/06/19.
 //  Copyright © 2019 Vid. All rights reserved.
@@ -15,7 +15,6 @@ internal struct RightMenu: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 10) {
-                Spacer()
                 Text("Hello World!")
                     .foregroundColor(Color.black)
                 Button(action: {
@@ -27,11 +26,12 @@ internal struct RightMenu: View {
                     Text("Show Old Photos")
                         .foregroundColor(Color.black)
                 })
-                Spacer()
             }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            .background(Color.red)
+            .background(Rectangle().shadow(radius: 4))
         }
-        .background(Color.red)
-        .background(Rectangle().shadow(radius: 4))
+        
     }
 }
 

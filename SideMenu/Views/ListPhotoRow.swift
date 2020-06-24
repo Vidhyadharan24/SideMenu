@@ -1,6 +1,6 @@
 //
 //  ListPhotoRow.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 14/07/19.
 //  Copyright © 2019 Vid. All rights reserved.

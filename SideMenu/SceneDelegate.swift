@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 23/06/19.
 //  Copyright © 2019 Vid. All rights reserved.

@@ -15,7 +15,6 @@ internal struct RightMenuPanel: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 10) {
-                Spacer()
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
@@ -26,11 +25,11 @@ internal struct RightMenuPanel: View {
                     Text("Update center view")
                         .foregroundColor(.black)
                 })
-                Spacer()
             }
-        }
-        .background(Color.red)
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            .background(Color.red)
             .background(Rectangle().shadow(radius: 4))
+        }
     }
 }
 

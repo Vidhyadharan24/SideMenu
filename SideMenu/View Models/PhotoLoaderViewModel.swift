@@ -1,6 +1,6 @@
 //
 //  PhotoListViewModel.swift
-//  SideMenu-Example
+//  SideMenu
 //
 //  Created by Vidhyadharan Mohanram on 14/07/19.
 //  Copyright © 2019 Vid. All rights reserved.
@@ -62,8 +62,9 @@ class PhotoLoaderViewModel: ObservableObject {
     }
     
     func cancel() {
-        _ = self.cancellables.map { $0.cancel() }
+        self.cancellables.forEach { (cancellable) in
+            cancellable.cancel()
+        }
         self.cancellables.removeAll()
     }
-    
 }

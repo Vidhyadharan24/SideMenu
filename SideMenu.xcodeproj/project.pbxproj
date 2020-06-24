@@ -51,7 +51,7 @@
 		1811845F22D87FCF0087C50A /* SideMenuConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuConfig.swift; sourceTree = "<group>"; };
 		1811846022D87FCF0087C50A /* SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		1811846122D87FCF0087C50A /* LeftMenuPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuPanel.swift; sourceTree = "<group>"; };
-		1830FC7922BFA686005A52D7 /* SideMenu-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SideMenu-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1830FC7922BFA686005A52D7 /* SideMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1830FC7C22BFA686005A52D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1830FC7E22BFA686005A52D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1830FC8022BFA686005A52D7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				1811845922D87FCF0087C50A /* Sources */,
-				1830FC7B22BFA686005A52D7 /* SideMenu-Example */,
+				1830FC7B22BFA686005A52D7 /* SideMenu */,
 				1830FC7A22BFA686005A52D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,12 +139,12 @@
 		1830FC7A22BFA686005A52D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1830FC7922BFA686005A52D7 /* SideMenu-Example.app */,
+				1830FC7922BFA686005A52D7 /* SideMenu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1830FC7B22BFA686005A52D7 /* SideMenu-Example */ = {
+		1830FC7B22BFA686005A52D7 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
 				1830FC8A22BFA687005A52D7 /* Info.plist */,
@@ -159,7 +159,7 @@
 				18E05D2C22C09AFD00AD2007 /* View Models */,
 				18E05D2B22C09AF400AD2007 /* Views */,
 			);
-			path = "SideMenu-Example";
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		1830FC8422BFA687005A52D7 /* Preview Content */ = {
@@ -222,9 +222,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1830FC7822BFA686005A52D7 /* SideMenu-Example */ = {
+		1830FC7822BFA686005A52D7 /* SideMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1830FCA322BFA687005A52D7 /* Build configuration list for PBXNativeTarget "SideMenu-Example" */;
+			buildConfigurationList = 1830FCA322BFA687005A52D7 /* Build configuration list for PBXNativeTarget "SideMenu" */;
 			buildPhases = (
 				1830FC7522BFA686005A52D7 /* Sources */,
 				1830FC7622BFA686005A52D7 /* Frameworks */,
@@ -234,13 +234,13 @@
 			);
 			dependencies = (
 			);
-			name = "SideMenu-Example";
+			name = SideMenu;
 			packageProductDependencies = (
 				1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */,
 				18AF5C0323293EE100A6AC8E /* ShimmerView */,
 			);
-			productName = "SideMenu-Example";
-			productReference = 1830FC7922BFA686005A52D7 /* SideMenu-Example.app */;
+			productName = SideMenu;
+			productReference = 1830FC7922BFA686005A52D7 /* SideMenu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -250,7 +250,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Vid;
 				TargetAttributes = {
 					1830FC7822BFA686005A52D7 = {
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1830FC7422BFA686005A52D7 /* Build configuration list for PBXProject "SideMenu-Example" */;
+			buildConfigurationList = 1830FC7422BFA686005A52D7 /* Build configuration list for PBXProject "SideMenu" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -275,7 +275,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1830FC7822BFA686005A52D7 /* SideMenu-Example */,
+				1830FC7822BFA686005A52D7 /* SideMenu */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +372,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -432,6 +433,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -465,10 +467,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "SideMenu-Example/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "SideMenu/Preview\\ Content";
 				DEVELOPMENT_TEAM = WLNG5C7UJQ;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "SideMenu-Example/Info.plist";
+				INFOPLIST_FILE = SideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,10 +487,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "SideMenu-Example/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "SideMenu/Preview\\ Content";
 				DEVELOPMENT_TEAM = WLNG5C7UJQ;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "SideMenu-Example/Info.plist";
+				INFOPLIST_FILE = SideMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,7 +505,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1830FC7422BFA686005A52D7 /* Build configuration list for PBXProject "SideMenu-Example" */ = {
+		1830FC7422BFA686005A52D7 /* Build configuration list for PBXProject "SideMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1830FCA122BFA687005A52D7 /* Debug */,
@@ -512,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1830FCA322BFA687005A52D7 /* Build configuration list for PBXNativeTarget "SideMenu-Example" */ = {
+		1830FCA322BFA687005A52D7 /* Build configuration list for PBXNativeTarget "SideMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1830FCA422BFA687005A52D7 /* Debug */,
