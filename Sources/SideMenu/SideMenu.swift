@@ -228,6 +228,28 @@ public struct SideMenu : View {
     
 }
 
+@available(iOS 14.0, *)
+struct SideMenuViewProvider: LibraryContentProvider {
+
+    @LibraryContentBuilder var views: [LibraryItem] {        
+        LibraryItem(SideMenu(leftMenu: LeftMenuPanel(), centerView: CenterView()),
+                    visible: true,
+                    title: "SideMenu with left menu",
+                    category: .control)
+        
+        LibraryItem(SideMenu(rightMenu: RightMenuPanel(), centerView: CenterView()),
+                    visible: true,
+                    title: "SideMenu with right menu",
+                    category: .control)
+        
+        LibraryItem(SideMenu(leftMenu: LeftMenuPanel(), rightMenu: RightMenuPanel(), centerView: CenterView()),
+                    visible: true,
+                    title: "SideMenu with both left and right menu",
+                    category: .control)
+    }
+
+}
+
 //  MARK: Menu background view
 
 struct MenuBackgroundView : View {
