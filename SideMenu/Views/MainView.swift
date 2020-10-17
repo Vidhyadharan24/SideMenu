@@ -7,14 +7,12 @@
 //
 
 import SwiftUI
-import ShimmerView
 
 struct MainView : View {
     var body: some View {
         SideMenu(leftMenu: LeftMenu(),
                  rightMenu: RightMenu(),
                  centerView: LatestPhotosView())
-            .environmentObject(ShimmerConfig())
     }
 }
 

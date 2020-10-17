@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,6 @@
 		1858C57422DA748B00AE3AD2 /* UserLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56C22DA748B00AE3AD2 /* UserLinks.swift */; };
 		1858C57522DA748B00AE3AD2 /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56D22DA748B00AE3AD2 /* Urls.swift */; };
 		1858C57622DA748B00AE3AD2 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56E22DA748B00AE3AD2 /* ProfileImage.swift */; };
-		1858C57D22DA7F3300AE3AD2 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */; };
 		1858C57F22DAFC1B00AE3AD2 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C57E22DAFC1B00AE3AD2 /* ImageLoader.swift */; };
 		1858C58322DB05C000AE3AD2 /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C58222DB05C000AE3AD2 /* NetworkImageView.swift */; };
 		1864AA7522E035FA002406F5 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864AA7422E035FA002406F5 /* ViewState.swift */; };
@@ -40,7 +39,6 @@
 		189D934122DA237A00AFD95F /* PhotosEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934022DA237A00AFD95F /* PhotosEndPoint.swift */; };
 		189D934322DA296900AFD95F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D934222DA296900AFD95F /* Constants.swift */; };
 		18A6D5C022D82EA0006A3674 /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D5BF22D82EA0006A3674 /* PhotosViewModel.swift */; };
-		18AF5C0423293EE100A6AC8E /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 18AF5C0323293EE100A6AC8E /* ShimmerView */; };
 		18D883CB22DB2A6E00286F39 /* PhotoLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D883CA22DB2A6E00286F39 /* PhotoLoaderViewModel.swift */; };
 		18F4C566243B054C00C5696C /* SideMenuEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4C565243B054C00C5696C /* SideMenuEnvironment.swift */; };
 /* End PBXBuildFile section */
@@ -89,8 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1858C57D22DA7F3300AE3AD2 /* SFSafeSymbols in Frameworks */,
-				18AF5C0423293EE100A6AC8E /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,8 +232,6 @@
 			);
 			name = SideMenu;
 			packageProductDependencies = (
-				1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */,
-				18AF5C0323293EE100A6AC8E /* ShimmerView */,
 			);
 			productName = SideMenu;
 			productReference = 1830FC7922BFA686005A52D7 /* SideMenu.app */;
@@ -268,8 +262,6 @@
 			);
 			mainGroup = 1830FC7022BFA686005A52D7;
 			packageReferences = (
-				1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
-				18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 1830FC7A22BFA686005A52D7 /* Products */;
 			projectDirPath = "";
@@ -397,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -452,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -524,38 +516,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/piknotech/SFSafeSymbols.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
-		18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Vidhyadharan-Mohanram/ShimmerView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1858C57C22DA7F3300AE3AD2 /* SFSafeSymbols */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1858C57B22DA7F3300AE3AD2 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
-			productName = SFSafeSymbols;
-		};
-		18AF5C0323293EE100A6AC8E /* ShimmerView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 18AF5C0223293EE100A6AC8E /* XCRemoteSwiftPackageReference "ShimmerView" */;
-			productName = ShimmerView;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1830FC7122BFA686005A52D7 /* Project object */;
 }

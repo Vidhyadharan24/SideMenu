@@ -27,7 +27,7 @@ struct PopularPhotosView: View {
                             self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
                         }
                     }, label: {
-                        Image(systemName: SFSymbol.lineHorizontal3.rawValue)
+                        Image(systemName: "line.horizontal.3")
                             .accentColor(.blue)
                             .imageScale(.large)
                     }),
@@ -36,7 +36,7 @@ struct PopularPhotosView: View {
                             self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
                         }
                     }, label: {
-                        Image(systemName: SFSymbol.lineHorizontal3.rawValue)
+                        Image(systemName: "line.horizontal.3")
                             .accentColor(.red)
                             .imageScale(.large)
                         

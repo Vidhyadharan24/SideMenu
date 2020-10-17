@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import ShimmerView
 
 struct NetworkImageView: View {
     
@@ -52,6 +51,7 @@ struct NetworkImageView: View {
         return AnyView(Image(uiImage: image)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .shimmer(isActive: shouldShimmer || shouldShowShimmer))
+            .redacted(reason: (shouldShimmer || shouldShowShimmer) ? .placeholder : RedactionReasons(rawValue: 0))
+        )
     }
 }
