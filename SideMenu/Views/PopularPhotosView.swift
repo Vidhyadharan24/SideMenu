@@ -7,70 +7,16 @@
 //
 
 import SwiftUI
-import SFSafeSymbols
 
-struct PopularPhotosView: View {
-    @Environment(\.sideMenuLeftPanelKey) var sideMenuLeftPanel
-    @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
-    
+struct PopularPhotosView: View {    
     @ObservedObject var viewModel = PhotosViewModel()
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 10) {
-                containedView()
-            }
-            .navigationBarTitle("Popular", displayMode: .inline)
-                .navigationBarItems(
-                    leading: Button(action: {
-                        withAnimation {
-                            self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
-                        }
-                    }, label: {
-                        Image(systemName: "line.horizontal.3")
-                            .accentColor(.blue)
-                            .imageScale(.large)
-                    }),
-                    trailing: Button(action: {
-                        withAnimation {
-                            self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
-                        }
-                    }, label: {
-                        Image(systemName: "line.horizontal.3")
-                            .accentColor(.red)
-                            .imageScale(.large)
-                        
-                    })
-            )
-        }.onAppear {
+        PhotosView(viewModel: viewModel)
+        .navigationBarTitle("Popular", displayMode: .inline)
+        .onAppear {
             self.fetchData()
         }
-    }
-    
-    func containedView() -> AnyView {
-        let view: AnyView
-        switch viewModel.state {
-        case .loading:
-            view = AnyView(List {
-                ForEach(1..<4) { _ in
-                    ListPhotoRow(shouldShimmer: true)
-                }
-            }
-            .listStyle(PlainListStyle()))
-        case .completedWithNoData:
-            view = AnyView(Text("No photos"))
-        case .completed(let photos):
-            view = AnyView(List(photos) { photo in
-                ListPhotoRow(photo: photo)
-            }
-            .listStyle(PlainListStyle()))
-        case .failed(let errorMessage):
-            view = AnyView(Text(errorMessage)
-                .lineLimit(nil)
-                .multilineTextAlignment(.center))
-        }
-        
-        return view
     }
     
     // MARK: - Private

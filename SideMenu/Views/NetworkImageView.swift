@@ -55,3 +55,13 @@ struct NetworkImageView: View {
         )
     }
 }
+
+struct NetworkImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        List {
+            NetworkImageView(urlString: "https://images.unsplash.com/photo-1475694867812-f82b8696d610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc4MjM3fQ", shouldShimmer: false)
+            NetworkImageView(urlString: "https://images.unsplash.com/photo-1475694867812-f82b8696d610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc4MjM3fQ", shouldShimmer: false)
+            NetworkImageView(urlString: "https://images.unsplash.com/photo-1475694867812-f82b8696d610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc4MjM3fQ", shouldShimmer: false)
+        }
+    }
+}

@@ -55,21 +55,43 @@ public struct SideMenu : View {
     @Environment (\.editMode) var editMode;
     
     @State private var sideMenuGestureMode: SideMenuGestureMode = SideMenuGestureMode.active;
-    @State private var sideMenuLeftPanel: Bool = false;
-    @State private var sideMenuRightPanel: Bool = false;
-    @State private var sideMenuCenterView: AnyView;
+    @State private var sideMenuLeftPanel: Bool = false
+    @State private var sideMenuRightPanel: Bool = false
+    @State private var sideMenuCenterView: AnyView
 
     private var menuAnimation: Animation {
         .easeOut(duration: self.config.animationDuration)
     }
     
     public var body: some View {
-        return GeometryReader { geometry in
-            ZStack {
-                self.sideMenuCenterView
-                    .opacity(1)
+        return
+            GeometryReader { geometry in
+                ZStack {
+                    NavigationView {
+                    self.sideMenuCenterView
+                        .opacity(1)
                     .transition(.opacity)
-                
+                        .navigationBarItems(
+                            leading: Button(action: {
+                                withAnimation {
+                                    self.sideMenuLeftPanel.toggle()
+                                }
+                            }, label: {
+                                Image(systemName: "sidebar.left")
+                                    .accentColor(.blue)
+                                    .imageScale(.large)
+                            }),
+                            trailing: Button(action: {
+                                withAnimation {
+                                    self.sideMenuRightPanel.toggle()
+                                }
+                            }, label: {
+                                Image(systemName: "sidebar.right")
+                                    .accentColor(.red)
+                                    .imageScale(.large)
+                            })
+                        )
+                    }
                 if self.sideMenuLeftPanel && self.leftMenu != nil {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
                                        sideMenuRightPanel: self.$sideMenuRightPanel,
@@ -116,11 +138,12 @@ public struct SideMenu : View {
                         self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
                         self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
                     }
-            }
+                }
             .environment(\.sideMenuGestureModeKey, self.$sideMenuGestureMode)
+            .environment(\.sideMenuCenterViewKey, self.$sideMenuCenterView)
             .environment(\.sideMenuLeftPanelKey, self.$sideMenuLeftPanel)
             .environment(\.sideMenuRightPanelKey, self.$sideMenuRightPanel)
-            .environment(\.sideMenuCenterViewKey, self.$sideMenuCenterView)
+
             .environment(\.horizontalSizeClass, .compact)
         }
     }
@@ -136,7 +159,8 @@ public struct SideMenu : View {
         return DragGesture()
             .onChanged { (value) in
                 self.onChangedDragGesture(value: value, screenWidth: screenWidth)
-        }.onEnded { (value) in
+        }
+            .onEnded { (value) in
             self.onEndedDragGesture(value: value, screenWidth: screenWidth)
         }
     }

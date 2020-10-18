@@ -26,7 +26,10 @@ struct ListPhotoRow : View {
 #if DEBUG
 struct ListPhotoRow_Previews : PreviewProvider {
     static var previews: some View {
-        ListPhotoRow()
+        NetworkImageView(urlString: "https://images.unsplash.com/photo-1475694867812-f82b8696d610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc4MjM3fQ", shouldShimmer: false)
+        .frame(height: 250)
+        .cornerRadius(5)
+        .shadow(radius: 5)
     }
 }
 #endif
