@@ -12,7 +12,7 @@ struct MainView : View {
     var body: some View {
         SideMenu(leftMenu: LeftMenu(),
                  rightMenu: RightMenu(),
-                 centerView: LatestPhotosView())
+                 centerView: PhotosView(orderBy: .latest))
     }
 }
 

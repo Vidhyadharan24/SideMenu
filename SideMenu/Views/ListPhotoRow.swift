@@ -15,10 +15,10 @@ struct ListPhotoRow : View {
     var photo: Photo?
     
     var body: some View {
-        NetworkImageView(urlString: self.photo?.urls.regular, shouldShimmer: self.shouldShimmer)
-            .frame(height: 250)
-            .cornerRadius(5)
-            .shadow(radius: 5)
+        NetworkImageView(urlString: self.photo?.urls.small, shouldShimmer: self.shouldShimmer)
+            .cornerRadius(5.0, antialiased: true)
+            .shadow(radius: 5.0)
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
     }
 }
 
@@ -27,9 +27,9 @@ struct ListPhotoRow : View {
 struct ListPhotoRow_Previews : PreviewProvider {
     static var previews: some View {
         NetworkImageView(urlString: "https://images.unsplash.com/photo-1475694867812-f82b8696d610?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc4MjM3fQ", shouldShimmer: false)
-        .frame(height: 250)
-        .cornerRadius(5)
-        .shadow(radius: 5)
+            .cornerRadius(5.0, antialiased: true)
+            .shadow(radius: 5.0)
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
     }
 }
 #endif

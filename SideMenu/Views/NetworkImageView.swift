@@ -17,6 +17,7 @@ struct NetworkImageView: View {
     
     var body: some View {
         self.containedView()
+            .frame(idealHeight: 250, maxHeight: 250)
     }
     
     init(urlString: String?, shouldShimmer: Bool) {
@@ -49,10 +50,11 @@ struct NetworkImageView: View {
         }
         
         return AnyView(Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .redacted(reason: (shouldShimmer || shouldShowShimmer) ? .placeholder : RedactionReasons(rawValue: 0))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .redacted(reason: (shouldShimmer || shouldShowShimmer) ? .placeholder : RedactionReasons(rawValue: 0))
         )
+
     }
 }
 

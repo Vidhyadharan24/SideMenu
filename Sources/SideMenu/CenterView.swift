@@ -13,24 +13,21 @@ internal struct CenterView : View {
     @Environment(\.sideMenuRightPanelKey) var sideMenuRightPanel
 
     var body: some View {
-        NavigationView {
-            VStack(spacing: 10) {
-                Button(action: {
-                    withAnimation {
-                        self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
-                    }
-                }, label: {
-                    Text("Show left menu") })
-                
-                Button(action: {
-                    withAnimation {
-                        self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
-                    }
-                }, label: {
-                    Text("Show right menu") })
+        VStack(spacing: 10) {
+            Button(action: {
+                withAnimation {
+                    self.sideMenuLeftPanel.wrappedValue = !self.sideMenuLeftPanel.wrappedValue
+                }
+            }, label: {
+                Text("Show left menu") })
+            Button(action: {
+                withAnimation {
+                    self.sideMenuRightPanel.wrappedValue = !self.sideMenuRightPanel.wrappedValue
+                }
+            }, label: {
+                Text("Show right menu") })
             }
-            .navigationBarTitle(Text("Center View"))
-        }
+            .navigationBarTitle(Text("Center View"), displayMode: .inline)
     }
 }
 

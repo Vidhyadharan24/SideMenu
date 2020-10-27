@@ -16,8 +16,6 @@
 		1830FC8322BFA687005A52D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8222BFA687005A52D7 /* Assets.xcassets */; };
 		1830FC8622BFA687005A52D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8522BFA687005A52D7 /* Preview Assets.xcassets */; };
 		1830FC8922BFA687005A52D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1830FC8722BFA687005A52D7 /* LaunchScreen.storyboard */; };
-		18570C5022DDAE160025E653 /* PopularPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18570C4E22DDAE160025E653 /* PopularPhotosView.swift */; };
-		18570C5122DDAE160025E653 /* OldestPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18570C4F22DDAE160025E653 /* OldestPhotosView.swift */; };
 		1858C56622DA6FCC00AE3AD2 /* ListPhotoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56522DA6FCC00AE3AD2 /* ListPhotoRow.swift */; };
 		1858C57122DA748B00AE3AD2 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56922DA748A00AE3AD2 /* Photo.swift */; };
 		1858C57222DA748B00AE3AD2 /* PhotoLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1858C56A22DA748B00AE3AD2 /* PhotoLinks.swift */; };
@@ -31,7 +29,6 @@
 		1866C34222C1094800C519AD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FC8022BFA686005A52D7 /* MainView.swift */; };
 		1866C34322C1094800C519AD /* RightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB122BFA9D1005A52D7 /* RightMenu.swift */; };
 		1866C34422C1094800C519AD /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */; };
-		1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1830FCB322BFAA16005A52D7 /* LatestPhotosView.swift */; };
 		1872424222E5BC19001708DB /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811845B22D87FCF0087C50A /* CenterView.swift */; };
 		1872424422E5BCC6001708DB /* RightMenuPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872424322E5BCC6001708DB /* RightMenuPanel.swift */; };
 		1899B45F253BEEDA00A63775 /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899B45E253BEEDA00A63775 /* PhotosView.swift */; };
@@ -60,9 +57,6 @@
 		1830FC8A22BFA687005A52D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenu.swift; sourceTree = "<group>"; };
 		1830FCB122BFA9D1005A52D7 /* RightMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightMenu.swift; sourceTree = "<group>"; };
-		1830FCB322BFAA16005A52D7 /* LatestPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPhotosView.swift; sourceTree = "<group>"; };
-		18570C4E22DDAE160025E653 /* PopularPhotosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPhotosView.swift; sourceTree = "<group>"; };
-		18570C4F22DDAE160025E653 /* OldestPhotosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldestPhotosView.swift; sourceTree = "<group>"; };
 		1858C56522DA6FCC00AE3AD2 /* ListPhotoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotoRow.swift; sourceTree = "<group>"; };
 		1858C56922DA748A00AE3AD2 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		1858C56A22DA748B00AE3AD2 /* PhotoLinks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLinks.swift; sourceTree = "<group>"; };
@@ -195,13 +189,10 @@
 		18E05D2B22C09AF400AD2007 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1830FCB322BFAA16005A52D7 /* LatestPhotosView.swift */,
 				1830FCAF22BFA9C6005A52D7 /* LeftMenu.swift */,
 				1858C56522DA6FCC00AE3AD2 /* ListPhotoRow.swift */,
 				1830FC8022BFA686005A52D7 /* MainView.swift */,
 				1858C58222DB05C000AE3AD2 /* NetworkImageView.swift */,
-				18570C4F22DDAE160025E653 /* OldestPhotosView.swift */,
-				18570C4E22DDAE160025E653 /* PopularPhotosView.swift */,
 				1830FCB122BFA9D1005A52D7 /* RightMenu.swift */,
 				1899B45E253BEEDA00A63775 /* PhotosView.swift */,
 			);
@@ -294,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1858C57322DA748B00AE3AD2 /* User.swift in Sources */,
-				1866C34522C1094800C519AD /* LatestPhotosView.swift in Sources */,
 				1858C57F22DAFC1B00AE3AD2 /* ImageLoader.swift in Sources */,
 				1899B45F253BEEDA00A63775 /* PhotosView.swift in Sources */,
 				18F4C566243B054C00C5696C /* SideMenuEnvironment.swift in Sources */,
@@ -308,7 +298,6 @@
 				1858C56622DA6FCC00AE3AD2 /* ListPhotoRow.swift in Sources */,
 				1864AA7522E035FA002406F5 /* ViewState.swift in Sources */,
 				1858C57122DA748B00AE3AD2 /* Photo.swift in Sources */,
-				18570C5122DDAE160025E653 /* OldestPhotosView.swift in Sources */,
 				1858C57422DA748B00AE3AD2 /* UserLinks.swift in Sources */,
 				1858C58322DB05C000AE3AD2 /* NetworkImageView.swift in Sources */,
 				1872424422E5BCC6001708DB /* RightMenuPanel.swift in Sources */,
@@ -322,7 +311,6 @@
 				189D934322DA296900AFD95F /* Constants.swift in Sources */,
 				1830FC7F22BFA686005A52D7 /* SceneDelegate.swift in Sources */,
 				1872424222E5BC19001708DB /* CenterView.swift in Sources */,
-				18570C5022DDAE160025E653 /* PopularPhotosView.swift in Sources */,
 				1866C34322C1094800C519AD /* RightMenu.swift in Sources */,
 				1811846322D87FCF0087C50A /* DragGestureValueExtension.swift in Sources */,
 			);

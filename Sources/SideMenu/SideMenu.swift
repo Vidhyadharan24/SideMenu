@@ -68,29 +68,61 @@ public struct SideMenu : View {
             GeometryReader { geometry in
                 ZStack {
                     NavigationView {
-                    self.sideMenuCenterView
-                        .opacity(1)
-                    .transition(.opacity)
-                        .navigationBarItems(
-                            leading: Button(action: {
-                                withAnimation {
-                                    self.sideMenuLeftPanel.toggle()
-                                }
-                            }, label: {
-                                Image(systemName: "sidebar.left")
-                                    .accentColor(.blue)
-                                    .imageScale(.large)
-                            }),
-                            trailing: Button(action: {
-                                withAnimation {
-                                    self.sideMenuRightPanel.toggle()
-                                }
-                            }, label: {
-                                Image(systemName: "sidebar.right")
-                                    .accentColor(.red)
-                                    .imageScale(.large)
-                            })
-                        )
+                        if (self.leftMenu != nil && self.rightMenu != nil) {
+                            self.sideMenuCenterView
+                                .opacity(1)
+                                .transition(.opacity)
+                                .navigationBarItems(
+                                    leading: Button(action: {
+                                        withAnimation {
+                                            self.sideMenuLeftPanel.toggle()
+                                        }
+                                    }, label: {
+                                        Image(systemName: "sidebar.left")
+                                            .accentColor(.blue)
+                                            .imageScale(.large)
+                                    }),
+                                    trailing: Button(action: {
+                                        withAnimation {
+                                            self.sideMenuRightPanel.toggle()
+                                        }
+                                    }, label: {
+                                        Image(systemName: "sidebar.right")
+                                            .accentColor(.red)
+                                            .imageScale(.large)
+                                    })
+                                )
+                            } else if (self.leftMenu != nil) {
+                                self.sideMenuCenterView
+                                    .opacity(1)
+                                    .transition(.opacity)
+                                    .navigationBarItems(
+                                        leading: Button(action: {
+                                            withAnimation {
+                                                self.sideMenuLeftPanel.toggle()
+                                            }
+                                        }, label: {
+                                            Image(systemName: "sidebar.left")
+                                                .accentColor(.blue)
+                                                .imageScale(.large)
+                                        })
+                                    )
+                            } else if (self.rightMenu != nil) {
+                                self.sideMenuCenterView
+                                    .opacity(1)
+                                    .transition(.opacity)
+                                    .navigationBarItems(
+                                        trailing: Button(action: {
+                                            withAnimation {
+                                                self.sideMenuRightPanel.toggle()
+                                            }
+                                        }, label: {
+                                            Image(systemName: "sidebar.right")
+                                                .accentColor(.red)
+                                                .imageScale(.large)
+                                        })
+                                )
+                            }
                     }
                 if self.sideMenuLeftPanel && self.leftMenu != nil {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
@@ -143,8 +175,8 @@ public struct SideMenu : View {
             .environment(\.sideMenuCenterViewKey, self.$sideMenuCenterView)
             .environment(\.sideMenuLeftPanelKey, self.$sideMenuLeftPanel)
             .environment(\.sideMenuRightPanelKey, self.$sideMenuRightPanel)
-
             .environment(\.horizontalSizeClass, .compact)
+
         }
     }
     

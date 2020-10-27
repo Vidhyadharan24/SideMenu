@@ -27,7 +27,7 @@ internal struct LeftMenu: View {
                 Text("Hello World!")
                 Button(action: {
                     withAnimation {
-                        self.sideMenuCenterView.wrappedValue = AnyView(PopularPhotosView())
+                        self.sideMenuCenterView.wrappedValue = AnyView(PhotosView(orderBy: .popular))
                         self.sideMenuLeftPanel.wrappedValue = false
                     }
                 }, label: {
@@ -57,9 +57,6 @@ internal struct LeftMenu: View {
 struct LeftMenu_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            LeftMenu()
-                .previewDevice("iPhone Xs")
-                .environment(\.colorScheme, .dark)
             LeftMenu()
         }
     }

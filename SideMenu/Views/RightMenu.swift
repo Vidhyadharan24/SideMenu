@@ -19,7 +19,7 @@ internal struct RightMenu: View {
                     .foregroundColor(Color.black)
                 Button(action: {
                     withAnimation {
-                        self.sideMenuCenterView.wrappedValue = AnyView(OldestPhotosView())
+                        self.sideMenuCenterView.wrappedValue = AnyView(PhotosView(orderBy: .oldest))
                         self.sideMenuRightPanel.wrappedValue = false
                     }
                 }, label: {
