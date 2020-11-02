@@ -30,7 +30,7 @@ struct PhotosView: View {
         case .loading:
             view = AnyView(ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
                 LazyVStack(spacing: 0) {
-                    ForEach(1..<4) { _ in
+                    ForEach(1..<5) { _ in
                         ListPhotoRow(shouldShimmer: true)
                     }
                 }.padding(.vertical, 5)

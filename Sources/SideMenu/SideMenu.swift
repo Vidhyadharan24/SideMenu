@@ -128,15 +128,12 @@ public struct SideMenu : View {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
                                        sideMenuRightPanel: self.$sideMenuRightPanel,
                                        bgColor: self.config.menuBGColor)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height)
                         .opacity(self.leftMenuBGOpacity)
                         .zIndex(1)
                     
                     self.leftMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
-                        .frame(width: self.config.menuWidth,
-                               height: geometry.size.height)
+                        .frame(width: self.config.menuWidth)
                         .offset(x: self.leftMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.leading))
                         .zIndex(2)
@@ -146,15 +143,12 @@ public struct SideMenu : View {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
                                        sideMenuRightPanel: self.$sideMenuRightPanel,
                                        bgColor: self.config.menuBGColor)
-                        .frame(width: geometry.size.width,
-                               height: geometry.size.height)
                         .opacity(self.rightMenuBGOpacity)
                         .zIndex(3)
                     
                     self.rightMenu!
                         .edgesIgnoringSafeArea(Edge.Set.all)
-                        .frame(width: self.config.menuWidth,
-                               height: geometry.size.height)
+                        .frame(width: self.config.menuWidth)
                         .offset(x: self.rightMenuOffsetX, y: 0)
                         .transition(.move(edge: Edge.trailing))
                         .zIndex(4)
