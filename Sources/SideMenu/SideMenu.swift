@@ -127,8 +127,8 @@ public struct SideMenu : View {
                 if self.sideMenuLeftPanel && self.leftMenu != nil {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
                                        sideMenuRightPanel: self.$sideMenuRightPanel,
-                                       bgColor: self.config.menuBGColor)
-                        .opacity(self.leftMenuBGOpacity)
+                                       bgColor: self.config.menuBGColor,
+                                       bgOpacity: self.leftMenuBGOpacity)
                         .zIndex(1)
                     
                     self.leftMenu!
@@ -142,8 +142,8 @@ public struct SideMenu : View {
                 if self.sideMenuRightPanel && self.rightMenu != nil {
                     MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
                                        sideMenuRightPanel: self.$sideMenuRightPanel,
-                                       bgColor: self.config.menuBGColor)
-                        .opacity(self.rightMenuBGOpacity)
+                                       bgColor: self.config.menuBGColor,
+                                       bgOpacity: self.rightMenuBGOpacity)
                         .zIndex(3)
                     
                     self.rightMenu!
@@ -307,10 +307,12 @@ struct MenuBackgroundView : View {
     @Binding var sideMenuRightPanel: Bool
     
     let bgColor: Color
+    let bgOpacity: Double
     
     var body: some View {
         Rectangle()
             .background(bgColor)
+            .opacity(bgOpacity)
             .transition(.opacity)
             .onTapGesture {
                 withAnimation {
