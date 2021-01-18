@@ -51,6 +51,7 @@ public struct SideMenu : View {
     
     @State private var leftMenuOffsetX: CGFloat = 0
     @State private var rightMenuOffsetX: CGFloat = 0
+    @State var isLandscape: Bool?
     
     @Environment (\.editMode) var editMode;
     
@@ -160,17 +161,43 @@ public struct SideMenu : View {
                     self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
                     self.leftMenuBGOpacity = self.config.menuBGOpacity
                     self.rightMenuBGOpacity = self.config.menuBGOpacity
-                    NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main) { _ in
-                        self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
-                        self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
-                    }
                 }
+                // Previously, the following was driven by a NotificationCenter event. But it wasn't handling rotations correctly all the time. It wasn't giving the right width on a rotation. I think it was gettig called before the GeometryReader change.
+                // This is a little crude, but I wanted to have an update that occurred on any change to the view-- so I could test if the landscape/portrait orientation had changed.
+                .modifier(CallOnViewUpdate({
+                    let newIsLandscape = geometry.size.width > geometry.size.height
+                    var update = false
+                    if isLandscape == nil {
+                        update = true
+                    }
+                    else if isLandscape != newIsLandscape {
+                        update = true
+                    }
+                    
+                    if update {
+                        DispatchQueue.main.async {
+                            self.isLandscape = newIsLandscape
+                            self.rightMenuOffsetX = self.menuXOffset(geometry.size.width)
+                            self.leftMenuOffsetX = -self.menuXOffset(geometry.size.width)
+                        }
+                    }
+                }))
             .environment(\.sideMenuGestureModeKey, self.$sideMenuGestureMode)
             .environment(\.sideMenuCenterViewKey, self.$sideMenuCenterView)
             .environment(\.sideMenuLeftPanelKey, self.$sideMenuLeftPanel)
             .environment(\.sideMenuRightPanelKey, self.$sideMenuRightPanel)
             .environment(\.horizontalSizeClass, .compact)
-
+        }
+    }
+    
+    // Just a means to get some code executed when a View is updated.
+    private struct CallOnViewUpdate: ViewModifier {
+        init(_ closure: ()->()) {
+            closure()
+        }
+        
+        func body(content: Content) -> some View {
+            content
         }
     }
     
