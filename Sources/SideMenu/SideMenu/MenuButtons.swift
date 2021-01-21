@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct MenuIcon: View {
-    let icon: SideMenuConfig.MenuIcon
+    let icon: SideMenuConfig.MenuItem
     let defaultAccentColor: Color
     let defaultImageName: String
     
@@ -39,7 +39,7 @@ struct LeftMenuButton: View {
                 self.sideMenuLeftPanel.toggle()
             }
         }, label: {
-            MenuIcon(icon: config.leftMenuIcon, defaultAccentColor: .blue, defaultImageName: "sidebar.left")
+            MenuIcon(icon: config.leftMenuItem, defaultAccentColor: .blue, defaultImageName: "sidebar.left")
         })
     }
 }
@@ -54,7 +54,7 @@ struct RightMenuButton: View {
                 self.sideMenuRightPanel.toggle()
             }
         }, label: {
-            MenuIcon(icon: config.rightMenuIcon, defaultAccentColor: .red, defaultImageName: "sidebar.right")
+            MenuIcon(icon: config.rightMenuItem, defaultAccentColor: .red, defaultImageName: "sidebar.right")
         })
     }
 }

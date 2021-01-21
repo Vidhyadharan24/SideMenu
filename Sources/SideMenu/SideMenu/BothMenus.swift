@@ -40,7 +40,7 @@ struct BothMenus: View {
         sideMenuCenterView
             .opacity(1)
             .transition(.opacity)
-            .if(config.leftMenuIcon.isSome && config.rightMenuIcon.isSome) {
+            .if(config.leftMenuItem.isSome && config.rightMenuItem.isSome) {
                 $0.navigationBarItems(
                     leading:
                         LeftMenuButton(sideMenuLeftPanel: $sideMenuLeftPanel, config: config),
@@ -48,13 +48,13 @@ struct BothMenus: View {
                         RightMenuButton(sideMenuRightPanel: $sideMenuRightPanel, config: config)
                     )
             }
-            .if(config.leftMenuIcon.isSome && config.rightMenuIcon.isNone) {
+            .if(config.leftMenuItem.isSome && config.rightMenuItem.isNone) {
                 $0.navigationBarItems(
                     leading:
                         LeftMenuButton(sideMenuLeftPanel: $sideMenuLeftPanel, config: config)
                     )
             }
-            .if(config.leftMenuIcon.isNone && config.rightMenuIcon.isSome) {
+            .if(config.leftMenuItem.isNone && config.rightMenuItem.isSome) {
                 $0.navigationBarItems(
                     trailing:
                         RightMenuButton(sideMenuRightPanel: $sideMenuRightPanel, config: config)
@@ -72,7 +72,7 @@ struct OnlyLeftMenu: View {
         sideMenuCenterView
             .opacity(1)
             .transition(.opacity)
-            .if(config.leftMenuIcon.isSome) {
+            .if(config.leftMenuItem.isSome) {
                 $0.navigationBarItems(leading:
                     LeftMenuButton(sideMenuLeftPanel: $sideMenuLeftPanel, config: config)
                 )
@@ -89,7 +89,7 @@ struct OnlyRightMenu: View {
         sideMenuCenterView
             .opacity(1)
             .transition(.opacity)
-            .if(config.rightMenuIcon.isSome) {
+            .if(config.rightMenuItem.isSome) {
                 $0.navigationBarItems(trailing:
                     RightMenuButton(sideMenuRightPanel: $sideMenuRightPanel, config: config)
                 )

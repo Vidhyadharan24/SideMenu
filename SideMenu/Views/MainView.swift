@@ -21,11 +21,11 @@ struct CustomIcon: View {
 struct MainView : View {
     let customIcons =
         SideMenuConfig(
-            leftMenuIcon:
+            leftMenuItem:
                 .custom(
                     AnyView(CustomIcon(systemName: "square"))
                 ),
-            rightMenuIcon:
+            rightMenuItem:
                 .custom(
                     AnyView(CustomIcon(systemName: "trash"))
                 )
@@ -33,18 +33,18 @@ struct MainView : View {
         
     let noIconOnRight =
         SideMenuConfig(
-            leftMenuIcon:
+            leftMenuItem:
                 .custom(
                     AnyView(CustomIcon(systemName: "square"))
                 ),
-            rightMenuIcon: .none
+            rightMenuItem: .none
         )
  
     // App needs to use `.navigationBarItems` to setup menu items. See SideMenuConfig.swift.
     let noIcons =
         SideMenuConfig(
-            leftMenuIcon: .none,
-            rightMenuIcon: .none
+            leftMenuItem: .none,
+            rightMenuItem: .none
         )
         
     let regularConfig = SideMenuConfig()

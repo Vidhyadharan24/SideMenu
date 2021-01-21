@@ -16,13 +16,14 @@ public struct SideMenuConfig {
     
     public var animationDuration: Double
     
-    public enum MenuIcon {
+    public enum MenuItem {
+        // SideMenu package will provide the menu item: Both the icon and opening/closing the side menu.
         case `default`
 
-        // Client application should provide a view rendering to an image that fits in the space for the menu button. SideMenu package takes care of opening/closing the side menu.
+        // Client application should provide a view rendering an image that fits in the space for the menu button. SideMenu package takes care of opening/closing the side menu.
         case custom(AnyView)
         
-        // SideMenu package will not use an icon; client application will supply own with `.navigationBarItems` modifer, and will also take care of opening the side menu/closing the side menu itself.
+        // SideMenu package will not provide a menu item-- it provides neither the icon or the opening/closing action. Client application must supply its own icon with `.navigationBarItems` modifer, and also must take care of opening/closing the side menu.
         case none
         
         var isNone: Bool {
@@ -39,17 +40,17 @@ public struct SideMenuConfig {
         }
     }
     
-    public var leftMenuIcon: MenuIcon
-    public var rightMenuIcon: MenuIcon
+    public var leftMenuItem: MenuItem
+    public var rightMenuItem: MenuItem
 
     
     public init(menuBGColor: Color = .black, menuBGOpacity: Double = 0.3,
-                menuWidth: CGFloat = 300, animationDuration: Double = 0.3, leftMenuIcon: MenuIcon = .default, rightMenuIcon: MenuIcon = .default) {
+                menuWidth: CGFloat = 300, animationDuration: Double = 0.3, leftMenuItem: MenuItem = .default, rightMenuItem: MenuItem = .default) {
         self.menuBGColor = menuBGColor
         self.menuBGOpacity = menuBGOpacity
         self.menuWidth = menuWidth
         self.animationDuration = animationDuration
-        self.leftMenuIcon = leftMenuIcon
-        self.rightMenuIcon = rightMenuIcon
+        self.leftMenuItem = leftMenuItem
+        self.rightMenuItem = rightMenuItem
     }
 }
