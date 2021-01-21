@@ -77,6 +77,13 @@ similary the panel gesture can be enabled or disabled using the environment key 
     
     // The duration taken by the menu to slide out. Default is 0.3
     public var animationDuration: Double    
+    
+    // Change the left/right side menu icon & action
+    //  1) .default: Use the menu icons & actions provided by the package
+    //  2) .custom(AnyView): Supply your own icon View.
+    //  3) .none: Use a `.navigationBarItems` modifier on your center view to provide your own icons and actions-- including showing the menu(s).
+    public var leftMenuItem: MenuItem
+    public var rightMenuItem: MenuItem
 ```
 
 

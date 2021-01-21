@@ -40,7 +40,7 @@ struct MainView : View {
             rightMenuItem: .none
         )
  
-    // App needs to use `.navigationBarItems` to setup menu items. See SideMenuConfig.swift.
+    // Client app needs to use `.navigationBarItems` to setup menu items. See SideMenuConfig.swift.
     let noIcons =
         SideMenuConfig(
             leftMenuItem: .none,
