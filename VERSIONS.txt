@@ -1,0 +1,8 @@
+SideMenu
+
+Version 0.1.2 (6/9/21)
+	* Added use of .navigationViewStyle(StackNavigationViewStyle())
+		on NavigationView-- because of https://github.com/SyncServerII/Neebla/issues/22
+
+
+
