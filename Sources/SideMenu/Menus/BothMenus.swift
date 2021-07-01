@@ -27,9 +27,9 @@ struct MenuNavigation: View {
                 OnlyRightMenu(sideMenuCenterView: $sideMenuCenterView, sideMenuRightPanel: $sideMenuRightPanel, config: config)
             }
         }
-        // 6/29/21; This is to solve a problem of the nav bar disappearing in certain cases. See https://github.com/SyncServerII/Neebla/issues/22
-        // This has a side effect of removing the slightly opaque color on the background of the album screen.
-        .navigationViewStyle(StackNavigationViewStyle())
+        .if(UIDevice.current.userInterfaceIdiom == .pad) {
+            $0.navigationViewStyle(StackNavigationViewStyle())
+        }
     }
 }
 
