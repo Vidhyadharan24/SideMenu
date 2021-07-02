@@ -45,7 +45,7 @@ public struct SideMenu : View {
     private var rightMenu: AnyView? = nil
         
     private var config: SideMenuConfig
-    
+
     @State private var leftMenuBGOpacity: Double = 0
     @State private var rightMenuBGOpacity: Double = 0
     
@@ -68,92 +68,37 @@ public struct SideMenu : View {
         return
             GeometryReader { geometry in
                 ZStack {
-                    NavigationView {
-                        if (self.leftMenu != nil && self.rightMenu != nil) {
-                            self.sideMenuCenterView
-                                .opacity(1)
-                                .transition(.opacity)
-                                .navigationBarItems(
-                                    leading: Button(action: {
-                                        withAnimation {
-                                            self.sideMenuLeftPanel.toggle()
-                                        }
-                                    }, label: {
-                                        Image(systemName: "sidebar.left")
-                                            .accentColor(.blue)
-                                            .imageScale(.large)
-                                    }),
-                                    trailing: Button(action: {
-                                        withAnimation {
-                                            self.sideMenuRightPanel.toggle()
-                                        }
-                                    }, label: {
-                                        Image(systemName: "sidebar.right")
-                                            .accentColor(.red)
-                                            .imageScale(.large)
-                                    })
-                                )
-                            } else if (self.leftMenu != nil) {
-                                self.sideMenuCenterView
-                                    .opacity(1)
-                                    .transition(.opacity)
-                                    .navigationBarItems(
-                                        leading: Button(action: {
-                                            withAnimation {
-                                                self.sideMenuLeftPanel.toggle()
-                                            }
-                                        }, label: {
-                                            Image(systemName: "sidebar.left")
-                                                .accentColor(.blue)
-                                                .imageScale(.large)
-                                        })
-                                    )
-                            } else if (self.rightMenu != nil) {
-                                self.sideMenuCenterView
-                                    .opacity(1)
-                                    .transition(.opacity)
-                                    .navigationBarItems(
-                                        trailing: Button(action: {
-                                            withAnimation {
-                                                self.sideMenuRightPanel.toggle()
-                                            }
-                                        }, label: {
-                                            Image(systemName: "sidebar.right")
-                                                .accentColor(.red)
-                                                .imageScale(.large)
-                                        })
-                                )
-                            }
+                    MenuNavigation(leftMenu: leftMenu, rightMenu: rightMenu, sideMenuCenterView: $sideMenuCenterView, sideMenuLeftPanel: $sideMenuLeftPanel, sideMenuRightPanel: $sideMenuRightPanel, config: config)
+                    
+                    if self.sideMenuLeftPanel && self.leftMenu != nil {
+                        MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
+                                           sideMenuRightPanel: self.$sideMenuRightPanel,
+                                           bgColor: self.config.menuBGColor,
+                                           bgOpacity: self.leftMenuBGOpacity)
+                            .zIndex(1)
+                        
+                        self.leftMenu!
+                            .edgesIgnoringSafeArea(Edge.Set.all)
+                            .frame(width: self.config.menuWidth)
+                            .offset(x: self.leftMenuOffsetX, y: 0)
+                            .transition(.move(edge: Edge.leading))
+                            .zIndex(2)
                     }
-                if self.sideMenuLeftPanel && self.leftMenu != nil {
-                    MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
-                                       sideMenuRightPanel: self.$sideMenuRightPanel,
-                                       bgColor: self.config.menuBGColor,
-                                       bgOpacity: self.leftMenuBGOpacity)
-                        .zIndex(1)
                     
-                    self.leftMenu!
-                        .edgesIgnoringSafeArea(Edge.Set.all)
-                        .frame(width: self.config.menuWidth)
-                        .offset(x: self.leftMenuOffsetX, y: 0)
-                        .transition(.move(edge: Edge.leading))
-                        .zIndex(2)
-                }
-                
-                if self.sideMenuRightPanel && self.rightMenu != nil {
-                    MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
-                                       sideMenuRightPanel: self.$sideMenuRightPanel,
-                                       bgColor: self.config.menuBGColor,
-                                       bgOpacity: self.rightMenuBGOpacity)
-                        .zIndex(3)
-                    
-                    self.rightMenu!
-                        .edgesIgnoringSafeArea(Edge.Set.all)
-                        .frame(width: self.config.menuWidth)
-                        .offset(x: self.rightMenuOffsetX, y: 0)
-                        .transition(.move(edge: Edge.trailing))
-                        .zIndex(4)
-                }
+                    if self.sideMenuRightPanel && self.rightMenu != nil {
+                        MenuBackgroundView(sideMenuLeftPanel: self.$sideMenuLeftPanel,
+                                           sideMenuRightPanel: self.$sideMenuRightPanel,
+                                           bgColor: self.config.menuBGColor,
+                                           bgOpacity: self.rightMenuBGOpacity)
+                            .zIndex(3)
+                        
+                        self.rightMenu!
+                            .edgesIgnoringSafeArea(Edge.Set.all)
+                            .frame(width: self.config.menuWidth)
+                            .offset(x: self.rightMenuOffsetX, y: 0)
+                            .transition(.move(edge: Edge.trailing))
+                            .zIndex(4)
+                    }
             }.gesture(self.panelDragGesture(geometry.size.width))
                 .animation(self.menuAnimation)
                 .onAppear {

@@ -8,11 +8,51 @@
 
 import SwiftUI
 
+struct CustomIcon: View {
+    let systemName: String
+    
+    var body: some View {
+        Image(systemName: systemName)
+            .accentColor(.green)
+            .imageScale(.large)
+    }
+}
+
 struct MainView : View {
+    let customIcons =
+        SideMenuConfig(
+            leftMenuItem:
+                .custom(
+                    AnyView(CustomIcon(systemName: "square"))
+                ),
+            rightMenuItem:
+                .custom(
+                    AnyView(CustomIcon(systemName: "trash"))
+                )
+        )
+        
+    let noIconOnRight =
+        SideMenuConfig(
+            leftMenuItem:
+                .custom(
+                    AnyView(CustomIcon(systemName: "square"))
+                ),
+            rightMenuItem: .none
+        )
+ 
+    // Client app needs to use `.navigationBarItems` to setup menu items. See SideMenuConfig.swift.
+    let noIcons =
+        SideMenuConfig(
+            leftMenuItem: .none,
+            rightMenuItem: .none
+        )
+        
+    let regularConfig = SideMenuConfig()
+        
     var body: some View {
         SideMenu(leftMenu: LeftMenu(),
                  rightMenu: RightMenu(),
-                 centerView: PhotosView(orderBy: .latest))
+                 centerView: PhotosView(orderBy: .latest), config: regularConfig)
     }
 }
 
