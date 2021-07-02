@@ -27,9 +27,8 @@ struct MenuNavigation: View {
                 OnlyRightMenu(sideMenuCenterView: $sideMenuCenterView, sideMenuRightPanel: $sideMenuRightPanel, config: config)
             }
         }
-        .if(UIDevice.current.userInterfaceIdiom == .pad) {
-            $0.navigationViewStyle(StackNavigationViewStyle())
-        }
+        // Without this, the nav bar disappears in some views lower down in the hierarchy. See https://github.com/SyncServerII/Neebla/issues/22
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
